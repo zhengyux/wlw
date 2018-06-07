@@ -1,9 +1,7 @@
 package com.wlw.zyx;
 
-
 import android.view.View;
 
-import com.wlw.zyx.util.dialogUtil.LoadingDialogUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -17,6 +15,7 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         setTranslucent(this);
         showLoading();
+
     }
 
     @Override
@@ -32,6 +31,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+
+        }
 
     }
 }

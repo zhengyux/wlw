@@ -17,8 +17,9 @@ import com.wlw.zyx.util.dialogUtil.LoadingDialogUtils;
 public abstract  class BaseActivity extends AppCompatActivity implements View.OnClickListener{
 
     /***封装toast对象**/
-    private static Toast toast;
-    private static Dialog dialog;
+    private  Toast toast;
+    /***封装dialog对象**/
+    private  Dialog Loadingdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +91,11 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
      */
     public void toastLong(String msg){
         if (null == toast) {
-            toast = new Toast(this);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setText(msg);
-            toast.show();
-        } else {
-            toast.setText(msg);
-            toast.show();
+            toast = Toast.makeText(this,msg,Toast.LENGTH_LONG);
         }
+            toast.setText(msg);
+            toast.show();
+
     }
 
     /**
@@ -106,22 +104,20 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
      */
     public void toastShort(String msg){
         if (null == toast) {
-            toast = new Toast(this);
-            toast.setDuration(Toast.LENGTH_SHORT);
-            toast.setText(msg);
-            toast.show();
-        } else {
-            toast.setText(msg);
-            toast.show();
+            toast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
         }
+        toast.setText(msg);
+        toast.show();
     }
 
+    //显示Loading
     public void showLoading(){
-        dialog= LoadingDialogUtils.showWaitDialog(this,"加载中...",false,true);
+        Loadingdialog= LoadingDialogUtils.showWaitDialog(this,"加载中...",false,true);
     }
 
+    //关闭Loading
     public void closeLoading(){
-        LoadingDialogUtils.closeDialog(dialog);
+        LoadingDialogUtils.closeDialog(Loadingdialog);
     }
 
 
