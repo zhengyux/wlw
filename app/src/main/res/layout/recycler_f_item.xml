@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/rec_f_item"
+    >
+
+    <TextView
+        android:paddingLeft="14px"
+        android:gravity="center_vertical"
+        android:id="@+id/tv_f_item"
+        android:textColor="@color/griditem"
+        android:textSize="14px"
+        android:background="#222629"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="10px"
+        android:id="@+id/rec_s"
+        android:background="@color/backg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

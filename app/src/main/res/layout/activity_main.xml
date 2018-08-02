@@ -6,178 +6,200 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<LinearLayout
-    android:id="@+id/head"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:orientation="horizontal"
-    >
-
-    <Button
-
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
-    <Button
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
+    <LinearLayout
+        android:background="@color/black"
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
         android:gravity="center"
-        android:layout_weight="1"
-        android:text="三年二班"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <Button
-
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
-
-<TextView
-    android:id="@+id/center"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@+id/head"
-    android:layout_width="10dp"
-    android:layout_height="match_parent" />
-
-<RelativeLayout
-    android:layout_below="@+id/head"
-    android:layout_toRightOf="@+id/center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/lin_mode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <Button
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/btn_sk"
+            android:layout_width="110px"
+            android:layout_height="58px"
+            android:layout_marginLeft="20px"
+            android:background="@drawable/sk_sel" />
+
         <Button
-            android:layout_weight="1"
+            android:id="@+id/btn_xk"
+            android:layout_width="110px"
+            android:layout_height="58px"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/xk_sel" />
+
+        <TextView
+            android:textColor="@color/griditem"
+            android:id="@+id/tv_class"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="三年二班"
+            android:textSize="30px" />
 
 
+        <Button
+            android:id="@+id/btn_qg"
+            android:background="@mipmap/btn_qg_more"
+            android:layout_marginRight="30px"
+            android:layout_width="110px"
+            android:layout_height="58px" />
+
+        <Button
+            android:layout_marginRight="30px"
+            android:id="@+id/btn_esc"
+            android:layout_width="110px"
+            android:layout_height="58px"
+            android:background="@mipmap/btn_tc" />
+
+        <ImageView
+            android:layout_marginRight="20px"
+            android:id="@+id/btn_set"
+            android:layout_width="55px"
+            android:layout_height="55px"
+            android:src="@mipmap/btn_sz_more" />
 
     </LinearLayout>
 
-<TextView
-    android:text="灯光控制"
-    android:layout_below="@id/lin_mode"
-    android:id="@+id/tv_lamp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rec_lamp"
-    android:layout_below="@+id/tv_lamp"
-    android:layout_width="match_parent"
-    android:layout_height="50dp">
-
-</android.support.v7.widget.RecyclerView>
-
     <TextView
-        android:text="空调控制"
-        android:layout_below="@+id/rec_lamp"
-        android:id="@+id/tv_airc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rec_airc"
-    android:layout_below="@+id/tv_airc"
-    android:layout_width="wrap_content"
-    android:layout_height="50dp">
-
-</android.support.v7.widget.RecyclerView>
-
-    <TextView
-        android:text="窗帘控制"
-        android:id="@+id/tv_curtain"
-        android:layout_below="@+id/rec_airc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/tv_curtain"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/rec_curtain">
-
-    </android.support.v7.widget.RecyclerView>
-
-    <TextView
-        android:text="其他"
-        android:id="@+id/tv_other"
-        android:layout_below="@+id/rec_curtain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@+id/tv_other"
-        android:id="@+id/rec_other"
-        ></android.support.v7.widget.RecyclerView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lin_other"
-        android:layout_below="@+id/rec_other"
-        android:orientation="horizontal"
-        >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/rec_other2"
-        android:layout_below="@+id/lin_other"
-        ></android.support.v7.widget.RecyclerView>
-
-
-</RelativeLayout>
+        android:id="@+id/center"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head"
+        android:layout_centerHorizontal="true" />
 
     <RelativeLayout
-        android:layout_below="@+id/head"
-        android:layout_toLeftOf="@+id/center"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="10px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head"
+        android:layout_toRightOf="@+id/center">
+
+        <LinearLayout
+            android:id="@+id/lin_mode"
+            android:layout_width="match_parent"
+            android:layout_height="96px"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:background="@color/backg"
+                android:id="@+id/main_radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="86px"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:textColor="@color/white"
+                    android:id="@+id/main_rg_ydms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/ydms_sel"
+                    android:gravity="center"
+                    android:text="阅读模式" />
+
+                <RadioButton
+                    android:textColor="@color/white"
+                    android:id="@+id/main_rg_bsms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/bsms_sel"
+                    android:gravity="center"
+                    android:text="板书模式" />
+
+                <RadioButton
+                    android:textColor="@color/white"
+                    android:id="@+id/main_rg_pptms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/pptms_sel"
+                    android:gravity="center"
+                    android:text="播放PPT模式" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="10px"
+            android:id="@+id/rec_f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_mode">
+
+        </android.support.v7.widget.RecyclerView>
 
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="10px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head"
+        android:layout_toLeftOf="@+id/center">
+
+        <VideoView
+            android:background="@mipmap/sxt"
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+
+            />
+
+        <LinearLayout
+            android:layout_marginTop="10px"
+            android:gravity="center_vertical"
+            android:background="@color/backg"
+            android:layout_width="match_parent"
+            android:layout_height="68px"
+            android:layout_below="@+id/videoview"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="20px"
+                android:textSize="20px"
+                android:textColor="@color/griditem"
+                android:id="@+id/main_tv_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/adjust_set"
+                android:layout_marginLeft="20dp"
+                android:text="设置"
+                android:textColor="@color/black"
+                android:background="@mipmap/btn_bg1"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                />
+
+            <Switch
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/copy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

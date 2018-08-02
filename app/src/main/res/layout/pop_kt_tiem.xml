@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/pop_kt_tv_wd"
+    android:text="26℃"
+    android:textSize="88px"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/pop_kt_tv_wd"
+            android:id="@+id/pop_kt_tv_sd"
+            android:text="湿度60%"
+            android:textSize="12px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@+id/pop_kt_tv_sd"
+            android:layout_below="@+id/pop_kt_tv_wd"
+            android:id="@+id/pop_kt_tv_yz"
+            android:text="运作0.1h"
+            android:textSize="12px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+
+</LinearLayout>

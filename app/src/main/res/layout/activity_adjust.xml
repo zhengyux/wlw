@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    tools:context=".AdjustActivity">
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/lin_class"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+        <Button
+            android:layout_marginLeft="20px"
+            android:background="@drawable/btn_back_sel"
+            android:id="@+id/adjust_btn_back"
+            android:layout_width="40px"
+            android:layout_height="40px" />
+
+        <TextView
+            android:textColor="@color/griditem"
+            android:textSize="30px"
+            android:gravity="center"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="环境调节"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/griditem"
+        android:layout_below="@+id/lin_class"
+        android:layout_width="match_parent"
+        android:layout_height="3px" />
+
+    <LinearLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:id="@+id/lin_gd"
+        android:layout_below="@+id/lin_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:textColor="@color/griditem"
+            android:text="关照强度低于"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_gd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Lx"
+            android:textColor="@color/griditem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_gd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Switch
+            android:layout_weight="1"
+            android:id="@+id/sw_gd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/griditem"
+        android:layout_below="@+id/lin_gd"
+        android:layout_width="match_parent"
+        android:layout_height="3px" />
+
+    <LinearLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:id="@+id/lin_gg"
+        android:layout_below="@+id/lin_gd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:textColor="@color/griditem"
+            android:text="关照强度高于"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_gg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Lx"
+            android:textColor="@color/griditem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_gg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Switch
+            android:layout_weight="1"
+            android:id="@+id/sw_gg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/griditem"
+        android:layout_below="@+id/lin_gg"
+        android:layout_width="match_parent"
+        android:layout_height="3px" />
+
+
+
+</RelativeLayout>
