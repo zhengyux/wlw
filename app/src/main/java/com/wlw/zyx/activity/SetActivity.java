@@ -1,4 +1,4 @@
-package com.wlw.zyx;
+package com.wlw.zyx.activity;
 
 import android.util.Log;
 import android.view.View;
@@ -8,9 +8,10 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.wlw.zyx.R;
 import com.wlw.zyx.adapter.MyGridViewAdapter;
 import com.wlw.zyx.bean.ClassBean;
-import com.wlw.zyx.util.SharedPreferencesUtils;
+import com.wlw.zyx.util.SPUtil.SharedPreferencesUtils;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
 import com.wlw.zyx.util.okhttp.NetWork;
 import com.wlw.zyx.util.okhttp.OkhttpUtil;

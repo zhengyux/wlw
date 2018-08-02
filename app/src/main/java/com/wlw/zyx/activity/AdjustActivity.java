@@ -1,8 +1,10 @@
-package com.wlw.zyx;
+package com.wlw.zyx.activity;
 
 import android.view.View;
 import android.widget.Button;
 
+import com.wlw.zyx.R;
+import com.wlw.zyx.activity.BaseActivity;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
 import com.wlw.zyx.util.okhttp.NetWork;
 import com.wlw.zyx.util.okhttp.OkhttpUtil;

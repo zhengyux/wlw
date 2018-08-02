@@ -1,4 +1,4 @@
-package com.wlw.zyx.util;
+package com.wlw.zyx.util.SPUtil;
 
 import android.content.Context;
 import android.content.SharedPreferences;

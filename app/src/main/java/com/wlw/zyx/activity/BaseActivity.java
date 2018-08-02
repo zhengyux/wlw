@@ -1,4 +1,4 @@
-package com.wlw.zyx;
+package com.wlw.zyx.activity;
 
 import android.app.Activity;
 import android.app.Dialog;

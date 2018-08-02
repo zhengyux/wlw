@@ -47,6 +47,7 @@ public class RoomBean {
         private String humidity;
         private String illumination;
         private String temperature;
+        private String pm25;
 
         public String getHumidity() {
             return humidity;
@@ -70,6 +71,14 @@ public class RoomBean {
 
         public void setTemperature(String temperature) {
             this.temperature = temperature;
+        }
+
+        public String getPm25() {
+            return pm25;
+        }
+
+        public void setPm25(String pm25) {
+            this.pm25 = pm25;
         }
     }
 }

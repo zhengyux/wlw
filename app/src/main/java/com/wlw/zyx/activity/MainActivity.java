@@ -1,4 +1,4 @@
-package com.wlw.zyx;
+package com.wlw.zyx.activity;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -16,14 +16,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.wlw.zyx.R;
 import com.wlw.zyx.adapter.MyPopGridAdapter;
 import com.wlw.zyx.adapter.MyRecyclerViewAdapter;
 import com.wlw.zyx.bean.DeviceBean;
 import com.wlw.zyx.bean.FindDevice;
 import com.wlw.zyx.bean.RoomBean;
-import com.wlw.zyx.util.SharedPreferencesUtils;
+import com.wlw.zyx.util.SPUtil.SharedPreferencesUtils;
 import com.wlw.zyx.util.dialogUtil.RxDialogEditSureCancel;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
+import com.wlw.zyx.util.okhttp.GsonUtil;
 import com.wlw.zyx.util.okhttp.NetWork;
 import com.wlw.zyx.util.okhttp.OkhttpUtil;
 
@@ -32,6 +34,9 @@ import java.util.HashMap;
 import okhttp3.Call;
 
 
+/**
+ *
+ */
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
 
     private ImageView btn_set;
@@ -111,12 +116,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
             case R.id.btn_sk://1
 
-                setClass("1");
+                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(0).getId()));
 
                 break;
 
             case R.id.btn_xk://2
-                setClass("2");
+                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()));
                 break;
 
             case R.id.btn_qg:
@@ -151,6 +156,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
 
     }
+
 
     public void showValidatedialog(){
         final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(MainActivity.this);//提示弹窗
@@ -222,7 +228,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
          @Override
          public void onResponse(String response) {
              Log.e("tag", "onResponse: "+response );
-            popupWindow.dismiss();
+             popupWindow.dismiss();
              getDeviceData();
          }
      });
@@ -257,9 +263,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
                     @Override
                     public void onResponse(String response) {
+                        closeLoading();
                         Gson gson = new Gson();
                         deviceBean = gson.fromJson(response,DeviceBean.class);
-                        closeLoading();
                         tvClass.setText(deviceBean.getResult().getSitepurposeName());
                         recyclerViewAdapter = new MyRecyclerViewAdapter(MainActivity.this,deviceBean);
                         rec_f.setAdapter(recyclerViewAdapter);
@@ -280,7 +286,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         Gson gson = new Gson();
                         RoomBean roomBean = new RoomBean();
                         roomBean=gson.fromJson(response,RoomBean.class);
-                        room.setText("照明： "+roomBean.getResult().getIllumination()+"Lux        湿度: "+roomBean.getResult().getHumidity()+"%        温度"+roomBean.getResult().getTemperature()+"℃");
+                        room.setText("照明： "+roomBean.getResult().getIllumination()+"Lux        湿度： "+roomBean.getResult().getHumidity()+"%        温度： "+roomBean.getResult().getTemperature()+"℃        PM2.5： "+roomBean.getResult().getPm25()+"μg/m3");
 
                     }
                 }

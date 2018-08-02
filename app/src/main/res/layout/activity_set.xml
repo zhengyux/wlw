@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
-    tools:context=".SetActivity">
+    tools:context=".activity.SetActivity">
 
     <LinearLayout
         android:gravity="center"

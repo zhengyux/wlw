@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SetActivity"
+            android:name=".activity.SetActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".AdjustActivity"></activity>
+        <activity android:name=".activity.AdjustActivity"></activity>
     </application>
 
 </manifest>
