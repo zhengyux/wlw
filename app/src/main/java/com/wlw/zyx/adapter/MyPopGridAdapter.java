@@ -9,28 +9,28 @@ import android.widget.Button;
 
 import com.wlw.zyx.activity.MainActivity;
 import com.wlw.zyx.R;
-import com.wlw.zyx.bean.FindDevice;
+import com.wlw.zyx.bean.FindDeviceBean;
 
 public class MyPopGridAdapter extends BaseAdapter {
 
     private MainActivity mContext;
-    private FindDevice findDevice;
+    private FindDeviceBean findDeviceBean;
     private int id;
 
-    public MyPopGridAdapter(MainActivity mContext, FindDevice findDevice,int id) {
+    public MyPopGridAdapter(MainActivity mContext, FindDeviceBean findDeviceBean, int id) {
         this.mContext = mContext;
-        this.findDevice = findDevice;
+        this.findDeviceBean = findDeviceBean;
         this.id=id;
     }
 
     @Override
     public int getCount() {
-        return findDevice.getData().get(0).getCommonds().size();
+        return findDeviceBean.getData().get(0).getCommonds().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return findDevice.getData().get(position);
+        return findDeviceBean.getData().get(position);
     }
 
     @Override
@@ -50,11 +50,11 @@ public class MyPopGridAdapter extends BaseAdapter {
         }else {
             holder = (Holder) convertView.getTag();
         }
-        holder.button.setText(findDevice.getData().get(0).getCommonds().get(position).getCommondName());
+        holder.button.setText(findDeviceBean.getData().get(0).getCommonds().get(position).getCommondName());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.operateCircuitry(findDevice.getData().get(0).getCommonds().get(position).getStatus(),id);
+                mContext.operateCircuitry(findDeviceBean.getData().get(0).getCommonds().get(position).getStatus(),id);
             }
         });
         return convertView;

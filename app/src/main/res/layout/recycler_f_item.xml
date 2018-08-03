@@ -7,17 +7,43 @@
     android:id="@+id/rec_f_item"
     >
 
-    <TextView
-        android:paddingLeft="14px"
-        android:gravity="center_vertical"
-        android:id="@+id/tv_f_item"
-        android:textColor="@color/griditem"
-        android:textSize="14px"
-        android:background="#222629"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="28dp"
+        android:background="#222629"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
 
-        />
+        <TextView
+            android:layout_weight="10"
+            android:paddingLeft="14px"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_f_item"
+            android:textColor="@color/griditem"
+            android:textSize="14px"
+            android:background="#222629"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"   />
+
+        <Switch
+            android:textOff=""
+            android:textOn=""
+            android:track="@drawable/switch1_sel"
+            android:switchMinWidth="40dp"
+            android:thumb="@null"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:id="@+id/sw_f_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="4dp"
         android:layout_marginBottom="10px"

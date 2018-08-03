@@ -2,7 +2,7 @@ package com.wlw.zyx.bean;
 
 import java.util.List;
 
-public class FindDevice {
+public class FindDeviceBean {
 
 
     /**

@@ -9,23 +9,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.wlw.zyx.R;
 import com.wlw.zyx.adapter.MyPopGridAdapter;
-import com.wlw.zyx.adapter.MyRecyclerViewAdapter;
+import com.wlw.zyx.adapter.DeviceRecyclerViewAdapter;
 import com.wlw.zyx.bean.DeviceBean;
-import com.wlw.zyx.bean.FindDevice;
+import com.wlw.zyx.bean.FindDeviceBean;
 import com.wlw.zyx.bean.RoomBean;
 import com.wlw.zyx.util.SPUtil.SharedPreferencesUtils;
 import com.wlw.zyx.util.dialogUtil.RxDialogEditSureCancel;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
-import com.wlw.zyx.util.okhttp.GsonUtil;
 import com.wlw.zyx.util.okhttp.NetWork;
 import com.wlw.zyx.util.okhttp.OkhttpUtil;
 
@@ -42,10 +44,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private ImageView btn_set;
     private String code;
     private DeviceBean deviceBean;
-    private FindDevice findDevice;
+    private FindDeviceBean findDeviceBean;
     private TextView tvClass;
     private RecyclerView rec_f;
-    private MyRecyclerViewAdapter recyclerViewAdapter;
+    private DeviceRecyclerViewAdapter recyclerViewAdapter;
     private PopupWindow popupWindow;
     private View popView;
     private GridView popGrid;
@@ -55,7 +57,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private TextView room;
     private Button sk;
     private Button xk;
-    private Button qg;
+    private CheckBox qg;
     private Button adjust_set;
 
     @Override
@@ -90,12 +92,29 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void initListener() {
         adjust_set.setOnClickListener(this);
-        qg.setOnClickListener(this);
+        qg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked){
+
+                    toastShort("全开");
+
+                }else {
+
+
+                    closeDevice();
+
+                }
+
+            }
+        });
         sk.setOnClickListener(this);
         xk.setOnClickListener(this);
         btn_set.setOnClickListener(this);
         esc.setOnClickListener(this);
         main_radioGroup.setOnCheckedChangeListener(this);
+
     }
 
 
@@ -122,10 +141,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
             case R.id.btn_xk://2
                 setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()));
-                break;
-
-            case R.id.btn_qg:
-                closeDevice();
                 break;
 
             case R.id.adjust_set:
@@ -194,8 +209,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     @Override
                     public void onResponse(String response) {
                         Gson gson = new Gson();
-                        findDevice = gson.fromJson(response,FindDevice.class);
-                        myPopGridAdapter = new MyPopGridAdapter(MainActivity.this,findDevice,id);
+                        findDeviceBean = gson.fromJson(response,FindDeviceBean.class);
+                        myPopGridAdapter = new MyPopGridAdapter(MainActivity.this, findDeviceBean,id);
                         popView = LayoutInflater.from(MainActivity.this).inflate(R.layout.pop_rec,null);
                         popGrid = popView.findViewById(R.id.pop_grid);
                         popGrid.setAdapter(myPopGridAdapter);
@@ -267,7 +282,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         Gson gson = new Gson();
                         deviceBean = gson.fromJson(response,DeviceBean.class);
                         tvClass.setText(deviceBean.getResult().getSitepurposeName());
-                        recyclerViewAdapter = new MyRecyclerViewAdapter(MainActivity.this,deviceBean);
+                        recyclerViewAdapter = new DeviceRecyclerViewAdapter(MainActivity.this,deviceBean);
                         rec_f.setAdapter(recyclerViewAdapter);
                         recyclerViewAdapter.refreshData();
                     }
@@ -336,14 +351,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (group.getCheckedRadioButtonId()){
+        switch (checkedId){
+
             case R.id.main_rg_ydms://6
-                operateSwitchPattern("6");
+                operateSwitchPattern("27");
 
                 break;
 
             case R.id.main_rg_bsms://8
-                operateSwitchPattern("8");
+                operateSwitchPattern("24");
 
                 break;
 

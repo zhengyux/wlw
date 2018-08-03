@@ -39,9 +39,10 @@
             android:textSize="30px" />
 
 
-        <Button
+        <CheckBox
+            android:button="@null"
             android:id="@+id/btn_qg"
-            android:background="@mipmap/btn_qg_more"
+            android:background="@drawable/kg_sel"
             android:layout_marginRight="30px"
             android:layout_width="110px"
             android:layout_height="58px" />
@@ -77,11 +78,32 @@
         android:layout_below="@+id/head"
         android:layout_toRightOf="@+id/center">
 
+        <TextView
+            android:gravity="center"
+            android:background="@color/backg"
+            android:textSize="20px"
+            android:textColor="@color/griditem"
+            android:id="@+id/main_tv_room"
+            android:layout_width="match_parent"
+            android:layout_height="68px" />
+
+
         <LinearLayout
+            android:layout_marginTop="10px"
             android:id="@+id/lin_mode"
             android:layout_width="match_parent"
             android:layout_height="96px"
+            android:layout_below="@+id/main_tv_room"
             android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_rec_SwitchPattern"
+                android:visibility="gone"
+                android:background="@color/backg"
+                android:layout_width="match_parent"
+                android:layout_height="86px">
+
+            </android.support.v7.widget.RecyclerView>
 
             <RadioGroup
                 android:background="@color/backg"
@@ -162,17 +184,11 @@
             android:gravity="center_vertical"
             android:background="@color/backg"
             android:layout_width="match_parent"
-            android:layout_height="68px"
+            android:layout_height="68dp"
             android:layout_below="@+id/videoview"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_marginLeft="20px"
-                android:textSize="20px"
-                android:textColor="@color/griditem"
-                android:id="@+id/main_tv_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
 
             <Button
                 android:visibility="gone"
@@ -186,8 +202,14 @@
                 />
 
             <Switch
+                android:layout_margin="10dp"
+                android:thumb="@null"
+                android:textOn=""
+                android:textOff=""
+                android:track="@drawable/switch2_sel"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
+                android:switchMinWidth="80dp"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -196,6 +218,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:background="@color/black"
         android:layout_alignParentBottom="true"
         android:src="@mipmap/copy"
         android:layout_width="match_parent"
