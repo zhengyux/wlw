@@ -13,6 +13,7 @@ import com.wlw.zyx.adapter.MyGridViewAdapter;
 import com.wlw.zyx.bean.ClassBean;
 import com.wlw.zyx.util.SPUtil.SharedPreferencesUtils;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
+import com.wlw.zyx.util.okhttp.GsonUtil;
 import com.wlw.zyx.util.okhttp.NetWork;
 import com.wlw.zyx.util.okhttp.OkhttpUtil;
 
@@ -93,8 +94,7 @@ public class SetActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response) {
-                        Gson gson = new Gson();
-                        classBean = gson.fromJson(response,ClassBean.class);
+                        classBean = GsonUtil.GsonToBean(response,ClassBean.class);
                         myGridViewAdapter = new MyGridViewAdapter(SetActivity.this,classBean);
                         gridView.setAdapter(myGridViewAdapter);
                         closeLoading();

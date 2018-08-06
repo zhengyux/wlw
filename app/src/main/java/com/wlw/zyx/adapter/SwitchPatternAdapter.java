@@ -1,7 +1,9 @@
 package com.wlw.zyx.adapter;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +41,32 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SwitchPatternHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SwitchPatternHolder holder, final int position) {
 
+        if(deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")){
+            holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
+            switch (deviceBean.getResult().getSwitchPatternList().get(position).getId()){
+                case 24:
+                    holder.imageView.setImageResource(R.drawable.icon_bs_down);
+                    break;
+                case 27:
+                    holder.imageView.setImageResource(R.drawable.icon_yd_down);
+                    break;
+                case 30:
+                    holder.imageView.setImageResource(R.drawable.icon_ppt_down);
+                    break;
+            }
+
+        }else {
+            holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
+        }
         holder.textView.setText(deviceBean.getResult().getSwitchPatternList().get(position).getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()));
+            }
+        });
 
 
     }

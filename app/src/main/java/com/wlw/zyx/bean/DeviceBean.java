@@ -186,6 +186,7 @@ public class DeviceBean {
              */
 
             private String name;
+            private String deviceType;
             private List<CircuitryListBean> circuitryList;
 
             public String getName() {
@@ -194,6 +195,14 @@ public class DeviceBean {
 
             public void setName(String name) {
                 this.name = name;
+            }
+
+            public String getDeviceType() {
+                return deviceType;
+            }
+
+            public void setDeviceType(String deviceType) {
+                this.deviceType = deviceType;
             }
 
             public List<CircuitryListBean> getCircuitryList() {
@@ -234,6 +243,15 @@ public class DeviceBean {
                 private String deviceName;
                 private String siteName;
                 private String sitePurposeName;
+                private int brightness;
+
+                public int getBrightness() {
+                    return brightness;
+                }
+
+                public void setBrightness(int brightness) {
+                    this.brightness = brightness;
+                }
 
                 public int getId() {
                     return id;

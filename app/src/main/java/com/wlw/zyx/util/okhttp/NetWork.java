@@ -2,6 +2,7 @@ package com.wlw.zyx.util.okhttp;
 
 public class NetWork {
 
+    public static String code;
     public static String URL = "http://192.168.1.29:8085/iot-app/"; //服务器
     public static String ClassUrl = URL+"general/pad/querySites"; //post 获取所有班级信息
     public static String DeviceUrl = URL + "general/pad/findCircuitryBySiteCodes?siteCodes=";//利用codes获取班级内的情景模式与设备信息
@@ -11,5 +12,6 @@ public class NetWork {
     public static String GetRoomInfoURL = URL+"general/env/getRoomInfo?siteCodes=";//温湿度亮度
     public static String closeRoomDeviceURL = URL+"/general/pad/closeRoomDevice";//全关
     public static String adjustSetURL=URL+"/general/pad/getAutoControlParam";//调节温度 参数：String siteCodes
+    public static String operroomcomplexURl=URL+"/general/pad/operroomcomplex";//设备全开关
 
 }

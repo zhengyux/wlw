@@ -25,6 +25,7 @@ public abstract class CallBackUtil<T> {
     public  void onProgress(float progress, long total ){};
 
     public  void onError(final Call call, final Exception e){
+
         mMainHandler.post(new Runnable() {
             @Override
             public void run() {

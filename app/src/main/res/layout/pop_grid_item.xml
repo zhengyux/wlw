@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout
+<LinearLayout
+    android:padding="5dp"
     android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="55dp">
 
     <Button
         android:textColor="@color/griditem"
         android:id="@+id/pop_grid_btn"
         android:background="@mipmap/btn_bj_more"
         android:layout_width="88px"
-        android:layout_height="62px" />
+        android:layout_height="35dp" />
 
-</android.widget.RelativeLayout>
+</LinearLayout>

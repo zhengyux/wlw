@@ -98,7 +98,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/main_rec_SwitchPattern"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@color/backg"
                 android:layout_width="match_parent"
                 android:layout_height="86px">
@@ -106,6 +106,7 @@
             </android.support.v7.widget.RecyclerView>
 
             <RadioGroup
+                android:visibility="gone"
                 android:background="@color/backg"
                 android:id="@+id/main_radioGroup"
                 android:layout_width="match_parent"

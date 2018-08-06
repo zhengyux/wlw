@@ -22,12 +22,14 @@ import com.google.gson.Gson;
 import com.wlw.zyx.R;
 import com.wlw.zyx.adapter.MyPopGridAdapter;
 import com.wlw.zyx.adapter.DeviceRecyclerViewAdapter;
+import com.wlw.zyx.adapter.SwitchPatternAdapter;
 import com.wlw.zyx.bean.DeviceBean;
 import com.wlw.zyx.bean.FindDeviceBean;
 import com.wlw.zyx.bean.RoomBean;
 import com.wlw.zyx.util.SPUtil.SharedPreferencesUtils;
 import com.wlw.zyx.util.dialogUtil.RxDialogEditSureCancel;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
+import com.wlw.zyx.util.okhttp.GsonUtil;
 import com.wlw.zyx.util.okhttp.NetWork;
 import com.wlw.zyx.util.okhttp.OkhttpUtil;
 
@@ -42,12 +44,13 @@ import okhttp3.Call;
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
 
     private ImageView btn_set;
-    private String code;
     private DeviceBean deviceBean;
     private FindDeviceBean findDeviceBean;
     private TextView tvClass;
     private RecyclerView rec_f;
     private DeviceRecyclerViewAdapter recyclerViewAdapter;
+    private RecyclerView main_rec_SwitchPattern;//情景模式rec
+    private SwitchPatternAdapter switchPatternAdapter;//情景模式适配器
     private PopupWindow popupWindow;
     private View popView;
     private GridView popGrid;
@@ -67,6 +70,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initView() {
+        main_rec_SwitchPattern = bindView(R.id.main_rec_SwitchPattern);
         adjust_set=bindView(R.id.adjust_set);
         qg=bindView(R.id.btn_qg);
         sk=bindView(R.id.btn_sk);
@@ -78,7 +82,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         rec_f = bindView(R.id.rec_f);
         main_radioGroup = bindView(R.id.main_radioGroup);
         rec_f.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
-
+        main_rec_SwitchPattern.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
     }
 
 
@@ -98,12 +102,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
                 if (isChecked){
 
-                    toastShort("全开");
+                    closeDevice(NetWork.code,"","01");
 
                 }else {
 
 
-                    closeDevice();
+                    closeDevice(NetWork.code,"","00");
 
                 }
 
@@ -145,7 +149,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
             case R.id.adjust_set:
                 Bundle bundle = new Bundle();
-                bundle.putString("code",code);
+                bundle.putString("code",NetWork.code);
                 openActivity(AdjustActivity.class,bundle);
 
                 break;
@@ -165,7 +169,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             toastLong("请先设置班级");
         }else {
             showLoading();
-            code= (String) SharedPreferencesUtils.getParam(this,"code","");
+            NetWork.code= (String) SharedPreferencesUtils.getParam(this,"code","");
             getDeviceData();
 
         }
@@ -208,8 +212,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
                     @Override
                     public void onResponse(String response) {
-                        Gson gson = new Gson();
-                        findDeviceBean = gson.fromJson(response,FindDeviceBean.class);
+                        findDeviceBean = GsonUtil.GsonToBean(response,FindDeviceBean.class);
                         myPopGridAdapter = new MyPopGridAdapter(MainActivity.this, findDeviceBean,id);
                         popView = LayoutInflater.from(MainActivity.this).inflate(R.layout.pop_rec,null);
                         popGrid = popView.findViewById(R.id.pop_grid);
@@ -230,7 +233,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
  public void operateCircuitry(String Status,int id){
-        showLoading();
+     showLoading();
      HashMap<String, String> paramsMap = new HashMap<>();
      paramsMap.put("circuitryId",String.valueOf(id));
      paramsMap.put("status",Status);
@@ -248,11 +251,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
          }
      });
  }
-    public void closeDevice(){
+    public void closeDevice(String siteCode, String deviceType, String status){
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("siteCodes",code);
-        OkhttpUtil.okHttpPost(NetWork.closeRoomDeviceURL, paramsMap, new CallBackUtil.CallBackString() {
+        paramsMap.put("siteCode",siteCode);
+        if(deviceType!=null&&deviceType.length()!=0){
+            paramsMap.put("deviceType",deviceType);
+        }
+        paramsMap.put("status",status);
+        OkhttpUtil.okHttpPost(NetWork.operroomcomplexURl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
 
@@ -265,11 +272,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         });
     }
 
-
+boolean type = true;
 
     public void getDeviceData(){
 
-        OkhttpUtil.okHttpPost(NetWork.DeviceUrl+code, new CallBackUtil.CallBackString(){
+        OkhttpUtil.okHttpPost(NetWork.DeviceUrl+NetWork.code, new CallBackUtil.CallBackString(){
 
                     @Override
                     public void onFailure(Call call, Exception e) {
@@ -279,17 +286,23 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     @Override
                     public void onResponse(String response) {
                         closeLoading();
-                        Gson gson = new Gson();
-                        deviceBean = gson.fromJson(response,DeviceBean.class);
+                        deviceBean = GsonUtil.GsonToBean(response,DeviceBean.class);
                         tvClass.setText(deviceBean.getResult().getSitepurposeName());
                         recyclerViewAdapter = new DeviceRecyclerViewAdapter(MainActivity.this,deviceBean);
                         rec_f.setAdapter(recyclerViewAdapter);
                         recyclerViewAdapter.refreshData();
+                        if(type){
+                            switchPatternAdapter = new SwitchPatternAdapter(MainActivity.this,deviceBean);
+                            main_rec_SwitchPattern.setAdapter(switchPatternAdapter);
+                            switchPatternAdapter.notifyDataSetChanged();
+                            type = false;
+                        }
+
                     }
                 }
         );
 
-        OkhttpUtil.okHttpPost(NetWork.GetRoomInfoURL+code, new CallBackUtil.CallBackString(){
+        OkhttpUtil.okHttpPost(NetWork.GetRoomInfoURL+NetWork.code, new CallBackUtil.CallBackString(){
 
                     @Override
                     public void onFailure(Call call, Exception e) {
@@ -298,9 +311,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
                     @Override
                     public void onResponse(String response) {
-                        Gson gson = new Gson();
                         RoomBean roomBean = new RoomBean();
-                        roomBean=gson.fromJson(response,RoomBean.class);
+                        roomBean=GsonUtil.GsonToBean(response,RoomBean.class);
                         room.setText("照明： "+roomBean.getResult().getIllumination()+"Lux        湿度： "+roomBean.getResult().getHumidity()+"%        温度： "+roomBean.getResult().getTemperature()+"℃        PM2.5： "+roomBean.getResult().getPm25()+"μg/m3");
 
                     }
@@ -312,6 +324,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     public void operateSwitchPattern(String id){
+        type = true;
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put("id",id);
@@ -332,7 +345,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void setClass(String id){
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("siteCodes",code);
+        paramsMap.put("siteCodes",NetWork.code);
         paramsMap.put("id",id);
         paramsMap.put("status","01");
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
