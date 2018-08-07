@@ -127,13 +127,23 @@
         android:layout_below="@+id/head"
         android:layout_toLeftOf="@+id/center">
 
-        <VideoView
+        <RelativeLayout
+            android:id="@+id/re_videoview"
             android:background="@mipmap/sxt"
-            android:id="@+id/videoview"
+            android:padding="18dp"
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="500dp">
 
-            />
+            <VideoView
+                android:background="@mipmap/sxt"
+                android:id="@+id/videoview"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                />
+        </RelativeLayout>
+
+
 
         <LinearLayout
             android:layout_marginTop="10px"
@@ -141,7 +151,7 @@
             android:background="@color/backg"
             android:layout_width="match_parent"
             android:layout_height="68dp"
-            android:layout_below="@+id/videoview"
+            android:layout_below="@+id/re_videoview"
             android:orientation="horizontal">
 
 
