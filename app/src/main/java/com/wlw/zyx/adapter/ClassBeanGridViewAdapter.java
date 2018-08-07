@@ -11,12 +11,12 @@ import com.wlw.zyx.R;
 import com.wlw.zyx.bean.ClassBean;
 
 
-public class MyGridViewAdapter extends BaseAdapter{
+public class ClassBeanGridViewAdapter extends BaseAdapter{
 
     private Context mContext;
     private ClassBean classBean;
 
-    public MyGridViewAdapter(Context mContext,ClassBean classBean) {
+    public ClassBeanGridViewAdapter(Context mContext, ClassBean classBean) {
         this.mContext = mContext;
         this.classBean = classBean;
     }

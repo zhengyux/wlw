@@ -121,6 +121,15 @@ public class DeviceBean {
             private String circuitryCodes;
             private String patternType;
             private String siteName;
+            private String flag;
+
+            public String getFlag() {
+                return flag;
+            }
+
+            public void setFlag(String flag) {
+                this.flag = flag;
+            }
 
             public int getId() {
                 return id;

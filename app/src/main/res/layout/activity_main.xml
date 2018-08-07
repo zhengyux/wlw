@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
+    <RelativeLayout
+        android:background="@color/black"
+        android:id="@+id/re"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"></RelativeLayout>
+
     <LinearLayout
+        android:layout_below="@+id/re"
         android:background="@color/black"
         android:id="@+id/head"
         android:layout_width="match_parent"

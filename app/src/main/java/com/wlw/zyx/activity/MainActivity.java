@@ -14,11 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
 import com.wlw.zyx.R;
 import com.wlw.zyx.adapter.MyPopGridAdapter;
 import com.wlw.zyx.adapter.DeviceRecyclerViewAdapter;
@@ -39,7 +35,7 @@ import okhttp3.Call;
 
 
 /**
- *
+ *主页面
  */
 public class MainActivity extends BaseActivity{
 
@@ -374,7 +370,9 @@ boolean type = true;
         type = true;
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("siteCodes",NetWork.code);
         paramsMap.put("id",id);
+
         paramsMap.put("status","01");
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
             @Override

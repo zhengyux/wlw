@@ -1,9 +1,10 @@
 package com.wlw.zyx.adapter;
 
-import android.graphics.Color;
+import android.annotation.SuppressLint;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,37 +37,36 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
     @NonNull
     @Override
     public SwitchPatternHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SwitchPatternHolder holder = new SwitchPatternHolder(LayoutInflater.from(mContext).inflate(R.layout.recycler_item_switchpattern, parent, false));
-        return holder;
+        return new SwitchPatternHolder(LayoutInflater.from(mContext).inflate(R.layout.recycler_item_switchpattern, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SwitchPatternHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull SwitchPatternHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         if(deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")){
             holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
-            switch (deviceBean.getResult().getSwitchPatternList().get(position).getId()){
-                case 24:
+            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()){
+                case "3":
                     holder.imageView.setImageResource(R.drawable.icon_bs_down);
                     break;
-                case 27:
+                case "1":
                     holder.imageView.setImageResource(R.drawable.icon_yd_down);
                     break;
-                case 30:
+                case "2":
                     holder.imageView.setImageResource(R.drawable.icon_ppt_down);
                     break;
             }
 
         }else {
             holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
-            switch (deviceBean.getResult().getSwitchPatternList().get(position).getId()){
-                case 24:
+            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()){
+                case "3":
                     holder.imageView.setImageResource(R.drawable.icon_bs_more);
                     break;
-                case 27:
+                case "1":
                     holder.imageView.setImageResource(R.drawable.icon_yd_more);
                     break;
-                case 30:
+                case "2":
                     holder.imageView.setImageResource(R.drawable.icon_ppt_more);
                     break;
             }
@@ -90,12 +90,12 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
         return deviceBean.getResult().getSwitchPatternList().size();
     }
 
-    public class SwitchPatternHolder extends RecyclerView.ViewHolder{
+    class SwitchPatternHolder extends RecyclerView.ViewHolder{
 
-        public TextView textView;
-        public ImageView imageView;
+        TextView textView;
+        ImageView imageView;
 
-       public SwitchPatternHolder(View itemView) {
+       SwitchPatternHolder(View itemView) {
            super(itemView);
            textView = itemView.findViewById(R.id.recycler_item_switchpattern_tv);
            imageView = itemView.findViewById(R.id.recycler_item_switchpattern_im);

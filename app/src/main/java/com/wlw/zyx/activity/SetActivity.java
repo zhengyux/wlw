@@ -7,9 +7,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.wlw.zyx.R;
-import com.wlw.zyx.adapter.MyGridViewAdapter;
+import com.wlw.zyx.adapter.ClassBeanGridViewAdapter;
 import com.wlw.zyx.bean.ClassBean;
 import com.wlw.zyx.util.SPUtil.SharedPreferencesUtils;
 import com.wlw.zyx.util.okhttp.CallBackUtil;
@@ -19,13 +18,16 @@ import com.wlw.zyx.util.okhttp.OkhttpUtil;
 
 import okhttp3.Call;
 
+/**
+ * 设置班级页面
+ */
 public class SetActivity extends BaseActivity {
     //班级列表
     private GridView gridView;
     //班级对象
     private ClassBean classBean;
     //班级列表适配器
-    private MyGridViewAdapter myGridViewAdapter;
+    private ClassBeanGridViewAdapter classBeanGridViewAdapter;
     //班级文本
     private TextView tvClass;
     //确定按钮
@@ -105,8 +107,8 @@ public class SetActivity extends BaseActivity {
                     @Override
                     public void onResponse(String response) {
                         classBean = GsonUtil.GsonToBean(response,ClassBean.class);
-                        myGridViewAdapter = new MyGridViewAdapter(SetActivity.this,classBean);
-                        gridView.setAdapter(myGridViewAdapter);
+                        classBeanGridViewAdapter = new ClassBeanGridViewAdapter(SetActivity.this,classBean);
+                        gridView.setAdapter(classBeanGridViewAdapter);
                         closeLoading();
                     }
                 }
