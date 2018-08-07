@@ -105,51 +105,6 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <RadioGroup
-                android:visibility="gone"
-                android:background="@color/backg"
-                android:id="@+id/main_radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="86px"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:textColor="@color/white"
-                    android:id="@+id/main_rg_ydms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableTop="@drawable/ydms_sel"
-                    android:gravity="center"
-                    android:text="阅读模式" />
-
-                <RadioButton
-                    android:textColor="@color/white"
-                    android:id="@+id/main_rg_bsms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableTop="@drawable/bsms_sel"
-                    android:gravity="center"
-                    android:text="板书模式" />
-
-                <RadioButton
-                    android:textColor="@color/white"
-                    android:id="@+id/main_rg_pptms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableTop="@drawable/pptms_sel"
-                    android:gravity="center"
-                    android:text="播放PPT模式" />
-
-            </RadioGroup>
-
-
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

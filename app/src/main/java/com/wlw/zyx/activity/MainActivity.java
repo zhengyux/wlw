@@ -41,26 +41,43 @@ import okhttp3.Call;
 /**
  *
  */
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
+public class MainActivity extends BaseActivity{
 
+    //设置班级按钮
     private ImageView btn_set;
+    //设备列表对象
     private DeviceBean deviceBean;
+    //设备按钮对象
     private FindDeviceBean findDeviceBean;
+    //班级名称
     private TextView tvClass;
+    //设备列表
     private RecyclerView rec_f;
+    //设备列表适配器
     private DeviceRecyclerViewAdapter recyclerViewAdapter;
-    private RecyclerView main_rec_SwitchPattern;//情景模式rec
-    private SwitchPatternAdapter switchPatternAdapter;//情景模式适配器
+    //情景模式列表
+    private RecyclerView main_rec_SwitchPattern;
+    //情景模式适配器
+    private SwitchPatternAdapter switchPatternAdapter;
+    //按钮弹窗
     private PopupWindow popupWindow;
+    //按钮弹窗的布局
     private View popView;
+    //按钮列表
     private GridView popGrid;
+    //按钮适配器
     private MyPopGridAdapter myPopGridAdapter;
-    private RadioGroup main_radioGroup;
+    //退出按钮
     private Button esc;
+    //温湿度文本
     private TextView room;
+    //上课按钮
     private Button sk;
+    //下课按钮
     private Button xk;
+    //全开全关选择
     private CheckBox qg;
+    //温湿度设置按钮
     private Button adjust_set;
 
     @Override
@@ -80,7 +97,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         btn_set = bindView(R.id.btn_set);
         tvClass = bindView(R.id.tv_class);
         rec_f = bindView(R.id.rec_f);
-        main_radioGroup = bindView(R.id.main_radioGroup);
         rec_f.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
         main_rec_SwitchPattern.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
     }
@@ -117,7 +133,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         xk.setOnClickListener(this);
         btn_set.setOnClickListener(this);
         esc.setOnClickListener(this);
-        main_radioGroup.setOnCheckedChangeListener(this);
 
     }
 
@@ -137,13 +152,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
                 break;
 
-            case R.id.btn_sk://1
+            case R.id.btn_sk:
 
                 setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(0).getId()));
 
                 break;
 
-            case R.id.btn_xk://2
+            case R.id.btn_xk:
                 setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()));
                 break;
 
@@ -163,6 +178,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         ifLoad();
     }
 
+    /**
+     * 是否第一次登陆
+     */
     public void ifLoad(){
 
         if(null==SharedPreferencesUtils.getParam(this,"code","")){
@@ -177,6 +195,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
 
+    /**
+     * 输入密码弹窗
+     */
     public void showValidatedialog(){
         final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(MainActivity.this);//提示弹窗
         //  rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
@@ -201,6 +222,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
 
+    /**
+     * 查找设备控制按钮
+     * @param type 设备类型
+     * @param view 显示位置
+     * @param id 设备id
+     */
     public void getFindDevice(String type, final View view, final int id){
         showLoading();
         OkhttpUtil.okHttpPost(NetWork.FindDeviceUrl+type, new CallBackUtil.CallBackString(){
@@ -232,6 +259,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         );
     }
 
+    /**
+     * 操控设备
+     * @param Status 开关状态码
+     * @param id 设备id
+     */
  public void operateCircuitry(String Status,int id){
      showLoading();
      HashMap<String, String> paramsMap = new HashMap<>();
@@ -251,6 +283,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
          }
      });
  }
+
+
+    /**
+     * 控制全开全关
+     * @param siteCode 班级code
+     * @param deviceType 设备类型
+     * @param status 状态码
+     */
     public void closeDevice(String siteCode, String deviceType, String status){
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
@@ -274,6 +314,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
 boolean type = true;
 
+    /**
+     * 获取设备列表和温湿度
+     */
     public void getDeviceData(){
 
         OkhttpUtil.okHttpPost(NetWork.DeviceUrl+NetWork.code, new CallBackUtil.CallBackString(){
@@ -323,6 +366,10 @@ boolean type = true;
 
     }
 
+    /**
+     * 操控情景模式
+     * @param id 情景模式id
+     */
     public void operateSwitchPattern(String id){
         type = true;
         showLoading();
@@ -342,6 +389,10 @@ boolean type = true;
         });
     }
 
+    /**
+     * 操控上课下课
+     * @param id 上下课id
+     */
     public void setClass(String id){
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
@@ -359,27 +410,6 @@ boolean type = true;
                 getDeviceData();
             }
         });
-    }
-
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
-
-            case R.id.main_rg_ydms://6
-                operateSwitchPattern("27");
-
-                break;
-
-            case R.id.main_rg_bsms://8
-                operateSwitchPattern("24");
-
-                break;
-
-            case R.id.main_rg_pptms://9
-                operateSwitchPattern("9");
-                break;
-        }
     }
 
 

@@ -20,12 +20,19 @@ import com.wlw.zyx.util.okhttp.OkhttpUtil;
 import okhttp3.Call;
 
 public class SetActivity extends BaseActivity {
+    //班级列表
     private GridView gridView;
+    //班级对象
     private ClassBean classBean;
+    //班级列表适配器
     private MyGridViewAdapter myGridViewAdapter;
+    //班级文本
     private TextView tvClass;
+    //确定按钮
     private Button btnOk;
+    //班级的code
     private String codes;
+    //返回按钮
     private Button back;
 
     @Override
@@ -83,6 +90,9 @@ public class SetActivity extends BaseActivity {
 
     }
 
+    /**
+     * 获取班级列表
+     */
     public void getClassData(){
 
         OkhttpUtil.okHttpPost(NetWork.ClassUrl, new CallBackUtil.CallBackString(){
