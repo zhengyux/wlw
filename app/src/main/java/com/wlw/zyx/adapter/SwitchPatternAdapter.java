@@ -59,6 +59,20 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
 
         }else {
             holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
+            switch (deviceBean.getResult().getSwitchPatternList().get(position).getId()){
+                case 24:
+                    holder.imageView.setImageResource(R.drawable.icon_bs_more);
+                    break;
+                case 27:
+                    holder.imageView.setImageResource(R.drawable.icon_yd_more);
+                    break;
+                case 30:
+                    holder.imageView.setImageResource(R.drawable.icon_ppt_more);
+                    break;
+            }
+
+
+
         }
         holder.textView.setText(deviceBean.getResult().getSwitchPatternList().get(position).getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

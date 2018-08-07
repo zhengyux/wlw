@@ -185,9 +185,19 @@ public class DeviceBean {
              * circuitryList : [{"id":17,"codes":"CL01","name":"中央灯","deviceType":"1","status":"01","siteCodes":"011","createBy":null,"createTime":null,"updateBy":null,"updateTime":"2018-06-28 15:08:25","deviceName":"灯光","siteName":"101","sitePurposeName":"一年1班"},{"id":19,"codes":"CL02","name":"黑板灯","deviceType":"1","status":"01","siteCodes":"011","createBy":null,"createTime":null,"updateBy":null,"updateTime":"2018-06-28 15:08:30","deviceName":"灯光","siteName":"101","sitePurposeName":"一年1班"}]
              */
 
+
             private String name;
             private String deviceType;
+            private Boolean isChecked;
             private List<CircuitryListBean> circuitryList;
+
+            public Boolean getChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(Boolean checked) {
+                isChecked = checked;
+            }
 
             public String getName() {
                 return name;
