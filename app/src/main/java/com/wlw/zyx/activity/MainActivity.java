@@ -150,12 +150,12 @@ public class MainActivity extends BaseActivity{
 
             case R.id.btn_sk:
 
-                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(0).getId()));
+                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(0).getId()),deviceBean.getResult().getGlobalPatternList().get(0).getStatus());
 
                 break;
 
             case R.id.btn_xk:
-                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()));
+                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()),deviceBean.getResult().getGlobalPatternList().get(1).getStatus());
                 break;
 
             case R.id.adjust_set:
@@ -381,14 +381,18 @@ boolean type = true;
      * 操控情景模式
      * @param id 情景模式id
      */
-    public void operateSwitchPattern(String id){
+    public void operateSwitchPattern(String id,String status){
         type = true;
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put("siteCodes",NetWork.code);
         paramsMap.put("id",id);
+        if(status.equals("00")){
+            paramsMap.put("status","01");
+        }else {
+            paramsMap.put("status","00");
+        }
 
-        paramsMap.put("status","01");
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
@@ -406,12 +410,17 @@ boolean type = true;
      * 操控上课下课
      * @param id 上下课id
      */
-    public void setClass(String id){
+    public void setClass(String id,String status){
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put("siteCodes",NetWork.code);
         paramsMap.put("id",id);
-        paramsMap.put("status","01");
+        if(status.equals("01")){
+            paramsMap.put("status","00");
+        }else {
+            paramsMap.put("status","01");
+        }
+
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {

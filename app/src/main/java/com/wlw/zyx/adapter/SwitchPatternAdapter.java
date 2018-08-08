@@ -78,7 +78,7 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()));
+                mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()),deviceBean.getResult().getSwitchPatternList().get(position).getStatus());
             }
         });
 
