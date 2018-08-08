@@ -330,6 +330,21 @@ boolean type = true;
                         recyclerViewAdapter = new DeviceRecyclerViewAdapter(MainActivity.this,deviceBean);
                         rec_f.setAdapter(recyclerViewAdapter);
                         recyclerViewAdapter.refreshData();
+
+                        if(deviceBean.getResult().getGlobalPatternList().get(0).getStatus().equals("01")){
+                            sk.setBackgroundResource(R.drawable.btn_sk_down);
+
+                        }else {
+                            sk.setBackgroundResource(R.drawable.btn_sk_more);
+
+                        }
+
+                        if(deviceBean.getResult().getGlobalPatternList().get(1).getStatus().equals("01")){
+                            xk.setBackgroundResource(R.drawable.btn_xk_down);
+                        }else {
+                            xk.setBackgroundResource(R.drawable.btn_xk_more);
+                        }
+
                         if(type){
                             switchPatternAdapter = new SwitchPatternAdapter(MainActivity.this,deviceBean);
                             main_rec_SwitchPattern.setAdapter(switchPatternAdapter);
