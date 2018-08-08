@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.wlw.zyx.R;
-import com.wlw.zyx.adapter.MyPopGridAdapter;
+import com.wlw.zyx.adapter.FindDeviceBeanGridAdapter;
 import com.wlw.zyx.adapter.DeviceRecyclerViewAdapter;
 import com.wlw.zyx.adapter.SwitchPatternAdapter;
 import com.wlw.zyx.bean.DeviceBean;
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity{
     //按钮列表
     private GridView popGrid;
     //按钮适配器
-    private MyPopGridAdapter myPopGridAdapter;
+    private FindDeviceBeanGridAdapter findDeviceBeanGridAdapter;
     //退出按钮
     private Button esc;
     //温湿度文本
@@ -224,7 +224,7 @@ public class MainActivity extends BaseActivity{
      * @param view 显示位置
      * @param id 设备id
      */
-    public void getFindDevice(String type, final View view, final int id){
+    public void getFindDevice(String type, final View view, final int id,final String status){
         showLoading();
         OkhttpUtil.okHttpPost(NetWork.FindDeviceUrl+type, new CallBackUtil.CallBackString(){
 
@@ -236,10 +236,10 @@ public class MainActivity extends BaseActivity{
                     @Override
                     public void onResponse(String response) {
                         findDeviceBean = GsonUtil.GsonToBean(response,FindDeviceBean.class);
-                        myPopGridAdapter = new MyPopGridAdapter(MainActivity.this, findDeviceBean,id);
+                        findDeviceBeanGridAdapter = new FindDeviceBeanGridAdapter(MainActivity.this, findDeviceBean,id ,status);
                         popView = LayoutInflater.from(MainActivity.this).inflate(R.layout.pop_rec,null);
                         popGrid = popView.findViewById(R.id.pop_grid);
-                        popGrid.setAdapter(myPopGridAdapter);
+                        popGrid.setAdapter(findDeviceBeanGridAdapter);
                         popupWindow = new PopupWindow(popView);
                         popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
                         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -72,5 +72,15 @@ public class SharedPreferencesUtils {
         return null;
     }
 
+    /**
+     * 清除所有数据
+     * @param context
+     */
+    public static void clear(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear().commit();
+    }
+
 
 }

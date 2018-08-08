@@ -12,16 +12,18 @@ import com.wlw.zyx.activity.MainActivity;
 import com.wlw.zyx.R;
 import com.wlw.zyx.bean.FindDeviceBean;
 
-public class MyPopGridAdapter extends BaseAdapter {
+public class FindDeviceBeanGridAdapter extends BaseAdapter {
 
     private MainActivity mContext;
     private FindDeviceBean findDeviceBean;
     private int id;
+    private String status;
 
-    public MyPopGridAdapter(MainActivity mContext, FindDeviceBean findDeviceBean, int id) {
+    public FindDeviceBeanGridAdapter(MainActivity mContext, FindDeviceBean findDeviceBean, int id , String status) {
         this.mContext = mContext;
         this.findDeviceBean = findDeviceBean;
         this.id=id;
+        this.status=status;
     }
 
     @Override
@@ -51,6 +53,40 @@ public class MyPopGridAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }else {
             holder = (Holder) convertView.getTag();
+        }
+        switch (findDeviceBean.getData().get(0).getCommonds().get(position).getStatus()){
+
+            case "OPEN":
+                if(status.equals("00")){
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                }else {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                }
+
+                break;
+
+            case "CLOSE":
+
+                if(status.equals("00")){
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                }else {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                }
+                break;
+
+            case "STOP":
+
+                if(status.equals("00")){
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                }else if(status.equals("01")){
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                }else {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                }
+
+
+                break;
+
         }
         holder.button.setText(findDeviceBean.getData().get(0).getCommonds().get(position).getCommondName());
         holder.button.setOnClickListener(new View.OnClickListener() {
