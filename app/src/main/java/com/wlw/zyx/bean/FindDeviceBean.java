@@ -2,6 +2,9 @@ package com.wlw.zyx.bean;
 
 import java.util.List;
 
+/**
+ * 设备按钮对象
+ */
 public class FindDeviceBean {
 
 

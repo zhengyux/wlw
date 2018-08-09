@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import com.wlw.zyx.R;
 import com.wlw.zyx.adapter.FindDeviceBeanGridAdapter;
 import com.wlw.zyx.adapter.DeviceRecyclerViewAdapter;
@@ -35,9 +36,9 @@ import okhttp3.Call;
 
 
 /**
- *主页面
+ * 主页面
  */
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity {
 
     //设置班级按钮
     private ImageView btn_set;
@@ -84,19 +85,18 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void initView() {
         main_rec_SwitchPattern = bindView(R.id.main_rec_SwitchPattern);
-        adjust_set=bindView(R.id.adjust_set);
-        qg=bindView(R.id.btn_qg);
-        sk=bindView(R.id.btn_sk);
-        xk=bindView(R.id.btn_xk);
+        adjust_set = bindView(R.id.adjust_set);
+        qg = bindView(R.id.btn_qg);
+        sk = bindView(R.id.btn_sk);
+        xk = bindView(R.id.btn_xk);
         room = bindView(R.id.main_tv_room);
         esc = bindView(R.id.btn_esc);
         btn_set = bindView(R.id.btn_set);
         tvClass = bindView(R.id.tv_class);
         rec_f = bindView(R.id.rec_f);
-        rec_f.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
-        main_rec_SwitchPattern.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
+        rec_f.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        main_rec_SwitchPattern.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
-
 
 
     @Override
@@ -112,14 +112,14 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked){
+                if (isChecked) {
 
-                    closeDevice(NetWork.code,"","01");
+                    closeDevice(NetWork.code, "", "01");
 
-                }else {
+                } else {
 
 
-                    closeDevice(NetWork.code,"","00");
+                    closeDevice(NetWork.code, "", "00");
 
                 }
 
@@ -135,10 +135,10 @@ public class MainActivity extends BaseActivity{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_set:
 
-             showValidatedialog();
+                showValidatedialog();
 
                 break;
 
@@ -150,18 +150,18 @@ public class MainActivity extends BaseActivity{
 
             case R.id.btn_sk:
 
-                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(0).getId()),deviceBean.getResult().getGlobalPatternList().get(0).getStatus());
+                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(0).getId()), deviceBean.getResult().getGlobalPatternList().get(0).getStatus());
 
                 break;
 
             case R.id.btn_xk:
-                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()),deviceBean.getResult().getGlobalPatternList().get(1).getStatus());
+                setClass(String.valueOf(deviceBean.getResult().getGlobalPatternList().get(1).getId()), deviceBean.getResult().getGlobalPatternList().get(1).getStatus());
                 break;
 
             case R.id.adjust_set:
                 Bundle bundle = new Bundle();
-                bundle.putString("code",NetWork.code);
-                openActivity(AdjustActivity.class,bundle);
+                bundle.putString("code", NetWork.code);
+                openActivity(AdjustActivity.class, bundle);
 
                 break;
         }
@@ -177,13 +177,13 @@ public class MainActivity extends BaseActivity{
     /**
      * 是否第一次登陆
      */
-    public void ifLoad(){
+    public void ifLoad() {
 
-        if(null==SharedPreferencesUtils.getParam(this,"code","")){
+        if (null == SharedPreferencesUtils.getParam(this, "code", "")) {
             toastLong("请先设置班级");
-        }else {
+        } else {
             showLoading();
-            NetWork.code= (String) SharedPreferencesUtils.getParam(this,"code","");
+            NetWork.code = (String) SharedPreferencesUtils.getParam(this, "code", "");
             getDeviceData();
 
         }
@@ -194,16 +194,16 @@ public class MainActivity extends BaseActivity{
     /**
      * 输入密码弹窗
      */
-    public void showValidatedialog(){
+    public void showValidatedialog() {
         final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(MainActivity.this);//提示弹窗
         //  rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
         rxDialogEditSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rxDialogEditSureCancel.getEditText().getText().toString().equals("123456")){
+                if (rxDialogEditSureCancel.getEditText().getText().toString().equals("123456")) {
                     openActivity(SetActivity.class);
                     rxDialogEditSureCancel.cancel();
-                }else {
+                } else {
                     toastLong("密码错误");
                 }
             }
@@ -220,24 +220,25 @@ public class MainActivity extends BaseActivity{
 
     /**
      * 查找设备控制按钮
+     *
      * @param type 设备类型
      * @param view 显示位置
-     * @param id 设备id
+     * @param id   设备id
      */
-    public void getFindDevice(String type, final View view, final int id,final String status){
+    public void getFindDevice(String type, final View view, final int id, final String status) {
         showLoading();
-        OkhttpUtil.okHttpPost(NetWork.FindDeviceUrl+type, new CallBackUtil.CallBackString(){
+        OkhttpUtil.okHttpPost(NetWork.FindDeviceUrl + type, new CallBackUtil.CallBackString() {
 
                     @Override
                     public void onFailure(Call call, Exception e) {
-                        Log.e("tag", "onFailure: "+e.getMessage() );
+                        Log.e("tag", "onFailure: " + e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
-                        findDeviceBean = GsonUtil.GsonToBean(response,FindDeviceBean.class);
-                        findDeviceBeanGridAdapter = new FindDeviceBeanGridAdapter(MainActivity.this, findDeviceBean,id ,status);
-                        popView = LayoutInflater.from(MainActivity.this).inflate(R.layout.pop_rec,null);
+                        findDeviceBean = GsonUtil.GsonToBean(response, FindDeviceBean.class);
+                        findDeviceBeanGridAdapter = new FindDeviceBeanGridAdapter(MainActivity.this, findDeviceBean, id, status);
+                        popView = LayoutInflater.from(MainActivity.this).inflate(R.layout.pop_rec, null);
                         popGrid = popView.findViewById(R.id.pop_grid);
                         popGrid.setAdapter(findDeviceBeanGridAdapter);
                         popupWindow = new PopupWindow(popView);
@@ -257,44 +258,46 @@ public class MainActivity extends BaseActivity{
 
     /**
      * 操控设备
+     *
      * @param Status 开关状态码
-     * @param id 设备id
+     * @param id     设备id
      */
- public void operateCircuitry(String Status,int id){
-     showLoading();
-     HashMap<String, String> paramsMap = new HashMap<>();
-     paramsMap.put("circuitryId",String.valueOf(id));
-     paramsMap.put("status",Status);
-     OkhttpUtil.okHttpPost(NetWork.operateCircuitryUrl, paramsMap, new CallBackUtil.CallBackString() {
-         @Override
-         public void onFailure(Call call, Exception e) {
-             Log.e("tag", "onFailure: "+e.getMessage() );
-         }
+    public void operateCircuitry(String Status, int id) {
+        showLoading();
+        HashMap<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("circuitryId", String.valueOf(id));
+        paramsMap.put("status", Status);
+        OkhttpUtil.okHttpPost(NetWork.operateCircuitryUrl, paramsMap, new CallBackUtil.CallBackString() {
+            @Override
+            public void onFailure(Call call, Exception e) {
+                Log.e("tag", "onFailure: " + e.getMessage());
+            }
 
-         @Override
-         public void onResponse(String response) {
-             Log.e("tag", "onResponse: "+response );
-             popupWindow.dismiss();
-             getDeviceData();
-         }
-     });
- }
+            @Override
+            public void onResponse(String response) {
+                Log.e("tag", "onResponse: " + response);
+                popupWindow.dismiss();
+                getDeviceData();
+            }
+        });
+    }
 
 
     /**
      * 控制全开全关
-     * @param siteCode 班级code
+     *
+     * @param siteCode   班级code
      * @param deviceType 设备类型
-     * @param status 状态码
+     * @param status     状态码
      */
-    public void closeDevice(String siteCode, String deviceType, String status){
+    public void closeDevice(String siteCode, String deviceType, String status) {
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("siteCode",siteCode);
-        if(deviceType!=null&&deviceType.length()!=0){
-            paramsMap.put("deviceType",deviceType);
+        paramsMap.put("siteCode", siteCode);
+        if (deviceType != null && deviceType.length() != 0) {
+            paramsMap.put("deviceType", deviceType);
         }
-        paramsMap.put("status",status);
+        paramsMap.put("status", status);
         OkhttpUtil.okHttpPost(NetWork.operroomcomplexURl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
@@ -308,45 +311,45 @@ public class MainActivity extends BaseActivity{
         });
     }
 
-boolean type = true;
+    boolean type = true;
 
     /**
      * 获取设备列表和温湿度
      */
-    public void getDeviceData(){
+    public void getDeviceData() {
 
-        OkhttpUtil.okHttpPost(NetWork.DeviceUrl+NetWork.code, new CallBackUtil.CallBackString(){
+        OkhttpUtil.okHttpPost(NetWork.DeviceUrl + NetWork.code, new CallBackUtil.CallBackString() {
 
                     @Override
                     public void onFailure(Call call, Exception e) {
-                        Log.e("tag", "onFailure: "+e.getMessage() );
+                        Log.e("tag", "onFailure: " + e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
                         closeLoading();
-                        deviceBean = GsonUtil.GsonToBean(response,DeviceBean.class);
+                        deviceBean = GsonUtil.GsonToBean(response, DeviceBean.class);
                         tvClass.setText(deviceBean.getResult().getSitepurposeName());
-                        recyclerViewAdapter = new DeviceRecyclerViewAdapter(MainActivity.this,deviceBean);
+                        recyclerViewAdapter = new DeviceRecyclerViewAdapter(MainActivity.this, deviceBean);
                         rec_f.setAdapter(recyclerViewAdapter);
                         recyclerViewAdapter.refreshData();
 
-                        if(deviceBean.getResult().getGlobalPatternList().get(0).getStatus().equals("01")){
+                        if (deviceBean.getResult().getGlobalPatternList().get(0).getStatus().equals("01")) {
                             sk.setBackgroundResource(R.drawable.btn_sk_down);
 
-                        }else {
+                        } else {
                             sk.setBackgroundResource(R.drawable.btn_sk_more);
 
                         }
 
-                        if(deviceBean.getResult().getGlobalPatternList().get(1).getStatus().equals("01")){
+                        if (deviceBean.getResult().getGlobalPatternList().get(1).getStatus().equals("01")) {
                             xk.setBackgroundResource(R.drawable.btn_xk_down);
-                        }else {
+                        } else {
                             xk.setBackgroundResource(R.drawable.btn_xk_more);
                         }
 
-                        if(type){
-                            switchPatternAdapter = new SwitchPatternAdapter(MainActivity.this,deviceBean);
+                        if (type) {
+                            switchPatternAdapter = new SwitchPatternAdapter(MainActivity.this, deviceBean);
                             main_rec_SwitchPattern.setAdapter(switchPatternAdapter);
                             switchPatternAdapter.notifyDataSetChanged();
                             type = false;
@@ -356,41 +359,41 @@ boolean type = true;
                 }
         );
 
-        OkhttpUtil.okHttpPost(NetWork.GetRoomInfoURL+NetWork.code, new CallBackUtil.CallBackString(){
+        OkhttpUtil.okHttpPost(NetWork.GetRoomInfoURL + NetWork.code, new CallBackUtil.CallBackString() {
 
                     @Override
                     public void onFailure(Call call, Exception e) {
-                        Log.e("tag", "onFailure: "+e.getMessage() );
+                        Log.e("tag", "onFailure: " + e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
                         RoomBean roomBean = new RoomBean();
-                        roomBean=GsonUtil.GsonToBean(response,RoomBean.class);
-                        room.setText("照明： "+roomBean.getResult().getIllumination()+"Lux        湿度： "+roomBean.getResult().getHumidity()+"%        温度： "+roomBean.getResult().getTemperature()+"℃        PM2.5： "+roomBean.getResult().getPm25()+"μg/m3");
+                        roomBean = GsonUtil.GsonToBean(response, RoomBean.class);
+                        room.setText("照明： " + roomBean.getResult().getIllumination() + "Lux        湿度： " + roomBean.getResult().getHumidity() + "%        温度： " + roomBean.getResult().getTemperature() + "℃        PM2.5： " + roomBean.getResult().getPm25() + "μg/m3");
 
                     }
                 }
         );
 
 
-
     }
 
     /**
      * 操控情景模式
+     *
      * @param id 情景模式id
      */
-    public void operateSwitchPattern(String id,String status){
+    public void operateSwitchPattern(String id, String status) {
         type = true;
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("siteCodes",NetWork.code);
-        paramsMap.put("id",id);
-        if(status.equals("00")){
-            paramsMap.put("status","01");
-        }else {
-            paramsMap.put("status","00");
+        paramsMap.put("siteCodes", NetWork.code);
+        paramsMap.put("id", id);
+        if (status.equals("00")) {
+            paramsMap.put("status", "01");
+        } else {
+            paramsMap.put("status", "00");
         }
 
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
@@ -408,17 +411,18 @@ boolean type = true;
 
     /**
      * 操控上课下课
+     *
      * @param id 上下课id
      */
-    public void setClass(String id,String status){
+    public void setClass(String id, String status) {
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("siteCodes",NetWork.code);
-        paramsMap.put("id",id);
-        if(status.equals("01")){
-            paramsMap.put("status","00");
-        }else {
-            paramsMap.put("status","01");
+        paramsMap.put("siteCodes", NetWork.code);
+        paramsMap.put("id", id);
+        if (status.equals("01")) {
+            paramsMap.put("status", "00");
+        } else {
+            paramsMap.put("status", "01");
         }
 
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
@@ -433,7 +437,6 @@ boolean type = true;
             }
         });
     }
-
 
 
 }

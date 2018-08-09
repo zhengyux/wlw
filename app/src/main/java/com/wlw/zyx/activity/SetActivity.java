@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.wlw.zyx.R;
@@ -35,7 +36,7 @@ public class SetActivity extends BaseActivity {
     //班级的code
     private String codes;
     //返回按钮
-    private Button back;
+    private ImageButton back;
 
     @Override
     int setLayout() {

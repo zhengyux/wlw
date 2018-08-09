@@ -2,6 +2,9 @@ package com.wlw.zyx.bean;
 
 import java.util.List;
 
+/**
+ * 设备列表对象
+ */
 public class DeviceBean {
 
     /**

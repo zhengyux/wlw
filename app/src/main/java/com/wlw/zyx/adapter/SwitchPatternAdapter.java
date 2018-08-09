@@ -17,14 +17,14 @@ import com.wlw.zyx.bean.DeviceBean;
 
 /**
  * 项目名称：WLW
- * 类描述：
+ * 类描述：情景模式适配器
  * 创建人：xuan
  * 创建时间：2018/8/2 16:12
  * 修改人：xuan
  * 修改时间：2018/8/2 16:12
  * 修改备注：
  */
-public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdapter.SwitchPatternHolder>{
+public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdapter.SwitchPatternHolder> {
 
     private MainActivity mContext;
     private DeviceBean deviceBean;
@@ -43,9 +43,9 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
     @Override
     public void onBindViewHolder(@NonNull SwitchPatternHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-        if(deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")){
+        if (deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")) {
             holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
-            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()){
+            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
                 case "3":
                     holder.imageView.setImageResource(R.drawable.icon_bs_down);
                     break;
@@ -57,9 +57,9 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
                     break;
             }
 
-        }else {
+        } else {
             holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
-            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()){
+            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
                 case "3":
                     holder.imageView.setImageResource(R.drawable.icon_bs_more);
                     break;
@@ -72,13 +72,12 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
             }
 
 
-
         }
         holder.textView.setText(deviceBean.getResult().getSwitchPatternList().get(position).getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()),deviceBean.getResult().getSwitchPatternList().get(position).getStatus());
+                mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()), deviceBean.getResult().getSwitchPatternList().get(position).getStatus());
             }
         });
 
@@ -90,17 +89,17 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
         return deviceBean.getResult().getSwitchPatternList().size();
     }
 
-    class SwitchPatternHolder extends RecyclerView.ViewHolder{
+    class SwitchPatternHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
         ImageView imageView;
 
-       SwitchPatternHolder(View itemView) {
-           super(itemView);
-           textView = itemView.findViewById(R.id.recycler_item_switchpattern_tv);
-           imageView = itemView.findViewById(R.id.recycler_item_switchpattern_im);
-       }
-   }
+        SwitchPatternHolder(View itemView) {
+            super(itemView);
+            textView = itemView.findViewById(R.id.recycler_item_switchpattern_tv);
+            imageView = itemView.findViewById(R.id.recycler_item_switchpattern_im);
+        }
+    }
 
 
 }

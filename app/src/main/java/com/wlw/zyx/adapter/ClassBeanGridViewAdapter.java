@@ -11,6 +11,9 @@ import com.wlw.zyx.R;
 import com.wlw.zyx.bean.ClassBean;
 
 
+/**
+ * 班级列表适配器
+ */
 public class ClassBeanGridViewAdapter extends BaseAdapter{
 
     private Context mContext;

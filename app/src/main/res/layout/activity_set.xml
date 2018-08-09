@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="100px">
 
-        <Button
+        <ImageButton
+            android:background="@null"
             android:layout_marginLeft="20px"
-            android:background="@drawable/btn_back_sel"
+            android:src="@drawable/btn_back_sel"
             android:id="@+id/btn_back"
-            android:layout_width="40px"
-            android:layout_height="40px" />
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
 
         <TextView
             android:textColor="@color/griditem"
@@ -59,30 +60,33 @@
         android:layout_height="3px" />
 
     <GridView
-        android:layout_marginTop="60px"
+        android:layout_marginTop="40dp"
         android:paddingLeft="80dp"
         android:paddingRight="80dp"
         android:id="@+id/grid_class"
         android:horizontalSpacing="70dp"
-        android:verticalSpacing="16dp"
-        android:numColumns="auto_fit"
+        android:verticalSpacing="30dp"
+        android:numColumns="3"
         android:layout_below="@+id/tv_okclass"
+        android:layout_above="@+id/btn_set_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </GridView>
 
     <Button
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/im"
         android:layout_centerHorizontal="true"
         android:background="@color/griditem"
         android:layout_marginTop="20px"
         android:text="确定"
-        android:layout_below="@+id/grid_class"
         android:id="@+id/btn_set_ok"
         android:layout_width="900px"
         android:layout_height="136px" />
 
 
     <ImageView
+        android:id="@+id/im"
         android:src="@mipmap/copy"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

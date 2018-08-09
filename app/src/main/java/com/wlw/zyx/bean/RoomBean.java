@@ -1,5 +1,8 @@
 package com.wlw.zyx.bean;
 
+/**
+ * 房间温湿度对象
+ */
 public class RoomBean {
 
 

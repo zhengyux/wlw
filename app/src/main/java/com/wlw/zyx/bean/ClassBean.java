@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
+/**
+ * 班级列表对象
+ */
 public class ClassBean {
 
     private String status;

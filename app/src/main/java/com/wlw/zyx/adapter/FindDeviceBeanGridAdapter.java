@@ -12,6 +12,9 @@ import com.wlw.zyx.activity.MainActivity;
 import com.wlw.zyx.R;
 import com.wlw.zyx.bean.FindDeviceBean;
 
+/**
+ * 设备按钮适配器
+ */
 public class FindDeviceBeanGridAdapter extends BaseAdapter {
 
     private MainActivity mContext;
@@ -19,11 +22,11 @@ public class FindDeviceBeanGridAdapter extends BaseAdapter {
     private int id;
     private String status;
 
-    public FindDeviceBeanGridAdapter(MainActivity mContext, FindDeviceBean findDeviceBean, int id , String status) {
+    public FindDeviceBeanGridAdapter(MainActivity mContext, FindDeviceBean findDeviceBean, int id, String status) {
         this.mContext = mContext;
         this.findDeviceBean = findDeviceBean;
-        this.id=id;
-        this.status=status;
+        this.id = id;
+        this.status = status;
     }
 
     @Override
@@ -46,41 +49,57 @@ public class FindDeviceBeanGridAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         Holder holder;
-        if(null == convertView){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.pop_grid_item,null);
+        if (null == convertView) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.pop_grid_item, null);
             holder = new Holder();
             holder.button = convertView.findViewById(R.id.pop_grid_btn);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (Holder) convertView.getTag();
         }
-        switch (findDeviceBean.getData().get(0).getCommonds().get(position).getStatus()){
+        switch (findDeviceBean.getData().get(0).getCommonds().get(position).getStatus()) {
 
             case "OPEN":
-                if(status.equals("00")){
+                if (status.equals("00")) {
                     holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
-                }else {
+                } else if (status.equals("01")) {
                     holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                } else if (status.equals("OPEN")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                } else if (status.equals("CLOSE")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                } else if (status.equals("STOP")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
                 }
 
                 break;
 
             case "CLOSE":
 
-                if(status.equals("00")){
+                if (status.equals("00")) {
                     holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
-                }else {
+                } else if (status.equals("01")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                } else if (status.equals("OPEN")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                } else if (status.equals("CLOSE")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                } else if (status.equals("STOP")) {
                     holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
                 }
+
                 break;
 
             case "STOP":
-
-                if(status.equals("00")){
+                if (status.equals("OPEN")) {
                     holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                } else if (status.equals("CLOSE")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                } else if (status.equals("STOP")) {
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
+                }else if(status.equals("00")){
+                    holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
                 }else if(status.equals("01")){
-                    holder.button.setTextColor(mContext.getResources().getColor(R.color.griditem));
-                }else {
                     holder.button.setTextColor(mContext.getResources().getColor(R.color.gray));
                 }
 
@@ -92,14 +111,14 @@ public class FindDeviceBeanGridAdapter extends BaseAdapter {
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.operateCircuitry(findDeviceBean.getData().get(0).getCommonds().get(position).getStatus(),id);
+                mContext.operateCircuitry(findDeviceBean.getData().get(0).getCommonds().get(position).getStatus(), id);
             }
         });
         return convertView;
     }
 
 
-    class Holder{
+    class Holder {
         Button button;
     }
 }
