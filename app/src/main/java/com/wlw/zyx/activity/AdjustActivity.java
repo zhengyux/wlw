@@ -14,9 +14,6 @@ import okhttp3.Call;
 
 public class AdjustActivity extends BaseActivity {
 
-    private Button back;
-
-    private String code;
 
     @Override
     int setLayout() {
@@ -26,36 +23,25 @@ public class AdjustActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        back=bindView(R.id.adjust_btn_back);
 
     }
 
     @Override
     protected void initData() {
-        code=getIntent().getExtras().getString("code");
         adjustData();
     }
 
     @Override
     protected void initListener() {
 
-        back.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.adjust_btn_back:
 
-
-                break;
-        }
-    }
 
     public void adjustData(){
         showLoading();
         HashMap<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("siteCodes",code);
+        paramsMap.put("siteCodes",NetWork.code);
         OkhttpUtil.okHttpPost(NetWork.adjustSetURL, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
@@ -69,4 +55,8 @@ public class AdjustActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

@@ -196,7 +196,7 @@ public class MainActivity extends BaseActivity {
      */
     public void showValidatedialog() {
         final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(MainActivity.this);//提示弹窗
-        //  rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
+          rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.mipmap.logo);
         rxDialogEditSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,6 +231,8 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     public void onFailure(Call call, Exception e) {
+                        closeLoading();
+                        toastLong("网络异常："+e.getMessage());
                         Log.e("tag", "onFailure: " + e.getMessage());
                     }
 
@@ -271,6 +273,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onFailure(Call call, Exception e) {
                 Log.e("tag", "onFailure: " + e.getMessage());
+                closeLoading();
+                toastLong("网络异常："+e.getMessage());
             }
 
             @Override
@@ -301,7 +305,8 @@ public class MainActivity extends BaseActivity {
         OkhttpUtil.okHttpPost(NetWork.operroomcomplexURl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-
+                closeLoading();
+                toastLong("网络异常："+e.getMessage());
             }
 
             @Override
@@ -323,6 +328,8 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onFailure(Call call, Exception e) {
                         Log.e("tag", "onFailure: " + e.getMessage());
+                        closeLoading();
+                        toastLong("网络异常："+e.getMessage());
                     }
 
                     @Override
@@ -399,7 +406,8 @@ public class MainActivity extends BaseActivity {
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-
+                closeLoading();
+                toastLong("网络异常："+e.getMessage());
             }
 
             @Override
@@ -428,7 +436,8 @@ public class MainActivity extends BaseActivity {
         OkhttpUtil.okHttpPost(NetWork.OperateSwitchPatternUrl, paramsMap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-
+                closeLoading();
+                toastLong("网络异常："+e.getMessage());
             }
 
             @Override

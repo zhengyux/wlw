@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.wlw.zyx.util.dialogUtil.LoadingDialogUtils;
 
+import butterknife.ButterKnife;
+
 public abstract  class BaseActivity extends AppCompatActivity implements View.OnClickListener{
 
     /***封装toast对象**/
@@ -28,6 +30,7 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayout());
+        ButterKnife.bind(this);
         initView();
         initData();
         initListener();

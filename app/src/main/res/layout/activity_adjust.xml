@@ -66,6 +66,7 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:src="@mipmap/ic_launcher"
             android:id="@+id/btn_gd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
