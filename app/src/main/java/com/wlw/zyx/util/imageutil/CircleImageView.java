@@ -26,7 +26,7 @@ import com.wlw.zyx.R;
 
 /**
  * 项目名称：WLW
- * 类描述：
+ * 类描述：圆形imageview
  * 创建人：xu
  * 创建时间：2018/8/10 15:54
  * 修改人：xu

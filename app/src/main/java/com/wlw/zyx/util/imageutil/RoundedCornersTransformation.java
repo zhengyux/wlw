@@ -15,7 +15,7 @@ import java.security.MessageDigest;
 
 /**
  * 项目名称：WLW
- * 类描述：
+ * 类描述： Glide圆角图片
  * 创建人：xuan
  * 创建时间：2018/8/10 14:57
  * 修改人：xuan
