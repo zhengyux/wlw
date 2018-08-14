@@ -183,6 +183,7 @@ public class MainActivity extends BaseActivity {
             toastLong("请先设置班级");
         } else {
             showLoading();
+            type = true;
             NetWork.code = (String) SharedPreferencesUtils.getParam(this, "code", "");
             getDeviceData();
 
@@ -341,18 +342,20 @@ public class MainActivity extends BaseActivity {
                         rec_f.setAdapter(recyclerViewAdapter);
                         recyclerViewAdapter.refreshData();
 
-                        if (deviceBean.getResult().getGlobalPatternList().get(0).getStatus().equals("01")) {
-                            sk.setBackgroundResource(R.drawable.btn_sk_down);
+                        if(!deviceBean.getResult().getGlobalPatternList().isEmpty()){
+                            if (deviceBean.getResult().getGlobalPatternList().get(0).getStatus().equals("01")) {
+                                sk.setBackgroundResource(R.drawable.btn_sk_down);
 
-                        } else {
-                            sk.setBackgroundResource(R.drawable.btn_sk_more);
+                            } else {
+                                sk.setBackgroundResource(R.drawable.btn_sk_more);
 
-                        }
+                            }
+                            if (deviceBean.getResult().getGlobalPatternList().get(1).getStatus().equals("01")) {
+                                xk.setBackgroundResource(R.drawable.btn_xk_down);
+                            } else {
+                                xk.setBackgroundResource(R.drawable.btn_xk_more);
+                            }
 
-                        if (deviceBean.getResult().getGlobalPatternList().get(1).getStatus().equals("01")) {
-                            xk.setBackgroundResource(R.drawable.btn_xk_down);
-                        } else {
-                            xk.setBackgroundResource(R.drawable.btn_xk_more);
                         }
 
                         if (type) {

@@ -10,7 +10,6 @@ public class NetWork {
     public static String operateCircuitryUrl = URL+"general/pad/operateCircuitry";//操控设备
     public static String OperateSwitchPatternUrl = URL+"general/pad/operateSwitchPattern";//操作情景模式
     public static String GetRoomInfoURL = URL+"general/env/getRoomInfo?siteCodes=";//温湿度亮度
-    public static String closeRoomDeviceURL = URL+"/general/pad/closeRoomDevice";//全关
     public static String adjustSetURL=URL+"/general/pad/getAutoControlParam";//调节温度 参数：String siteCodes
     public static String operroomcomplexURl=URL+"/general/pad/operroomcomplex";//设备全开关
 
