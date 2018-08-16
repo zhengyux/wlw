@@ -33,6 +33,8 @@ import com.wlw.zyx.util.okhttp.OkhttpUtil;
 import java.util.HashMap;
 
 import okhttp3.Call;
+import site.gemus.openingstartanimation.LineDrawStrategy;
+import site.gemus.openingstartanimation.OpeningStartAnimation;
 
 
 /**
@@ -79,11 +81,15 @@ public class MainActivity extends BaseActivity {
 
     @Override
     int setLayout() {
+
         return R.layout.activity_main;
     }
 
     @Override
     protected void initView() {
+
+        setOpeningStartAnimation(this);
+
         main_rec_SwitchPattern = bindView(R.id.main_rec_SwitchPattern);
         adjust_set = bindView(R.id.adjust_set);
         qg = bindView(R.id.btn_qg);
@@ -101,6 +107,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
         ifLoad();
 
     }
@@ -172,6 +179,11 @@ public class MainActivity extends BaseActivity {
     protected void onRestart() {
         super.onRestart();
         ifLoad();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     /**

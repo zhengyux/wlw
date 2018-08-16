@@ -43,43 +43,47 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
     @Override
     public void onBindViewHolder(@NonNull SwitchPatternHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-        if (deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")) {
-            holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
-            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
-                case "3":
-                    holder.imageView.setImageResource(R.drawable.icon_bs_down);
-                    break;
-                case "1":
-                    holder.imageView.setImageResource(R.drawable.icon_yd_down);
-                    break;
-                case "2":
-                    holder.imageView.setImageResource(R.drawable.icon_ppt_down);
-                    break;
-            }
+        if(!deviceBean.getResult().getSwitchPatternList().isEmpty()){
+            if (deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")) {
+                holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
+                switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
+                    case "3":
+                        holder.imageView.setImageResource(R.drawable.icon_bs_down);
+                        break;
+                    case "1":
+                        holder.imageView.setImageResource(R.drawable.icon_yd_down);
+                        break;
+                    case "2":
+                        holder.imageView.setImageResource(R.drawable.icon_ppt_down);
+                        break;
+                }
 
-        } else {
-            holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
-            switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
-                case "3":
-                    holder.imageView.setImageResource(R.drawable.icon_bs_more);
-                    break;
-                case "1":
-                    holder.imageView.setImageResource(R.drawable.icon_yd_more);
-                    break;
-                case "2":
-                    holder.imageView.setImageResource(R.drawable.icon_ppt_more);
-                    break;
-            }
+            } else {
+                holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
+                switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
+                    case "3":
+                        holder.imageView.setImageResource(R.drawable.icon_bs_more);
+                        break;
+                    case "1":
+                        holder.imageView.setImageResource(R.drawable.icon_yd_more);
+                        break;
+                    case "2":
+                        holder.imageView.setImageResource(R.drawable.icon_ppt_more);
+                        break;
+                }
 
+
+            }
+            holder.textView.setText(deviceBean.getResult().getSwitchPatternList().get(position).getName());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()), deviceBean.getResult().getSwitchPatternList().get(position).getStatus());
+                }
+            });
 
         }
-        holder.textView.setText(deviceBean.getResult().getSwitchPatternList().get(position).getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.operateSwitchPattern(String.valueOf(deviceBean.getResult().getSwitchPatternList().get(position).getId()), deviceBean.getResult().getSwitchPatternList().get(position).getStatus());
-            }
-        });
+
 
 
     }

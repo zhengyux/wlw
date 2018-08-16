@@ -15,9 +15,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.wlw.zyx.R;
 import com.wlw.zyx.util.dialogUtil.LoadingDialogUtils;
 
 import butterknife.ButterKnife;
+import site.gemus.openingstartanimation.LineDrawStrategy;
+import site.gemus.openingstartanimation.OpeningStartAnimation;
 
 public abstract  class BaseActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -53,6 +56,18 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
     public <T extends View> T bindView(int id){
         return (T)findViewById(id);
     }
+
+
+    protected   void setOpeningStartAnimation(Activity activity){
+        OpeningStartAnimation openingStartAnimation = new OpeningStartAnimation.Builder(activity)
+                .setDrawStategy(new LineDrawStrategy())
+                .setAppName("巨匠物联网")
+                .setAppIcon(activity.getResources().getDrawable(R.mipmap.logo))
+                .setAppStatement("爱进步，智慧校园")
+                .create();
+        openingStartAnimation.show(activity);
+    }
+
 
     /**
      * 使状态栏透明
