@@ -64,6 +64,7 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
                 .setAppName("巨匠物联网")
                 .setAppIcon(activity.getResources().getDrawable(R.mipmap.logo))
                 .setAppStatement("爱进步，智慧校园")
+                .setAnimationFinishTime(4000)
                 .create();
         openingStartAnimation.show(activity);
     }

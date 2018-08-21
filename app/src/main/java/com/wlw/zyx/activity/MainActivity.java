@@ -191,7 +191,7 @@ public class MainActivity extends BaseActivity {
      */
     public void ifLoad() {
 
-        if (null == SharedPreferencesUtils.getParam(this, "code", "")) {
+        if ("null".equals(SharedPreferencesUtils.getParam(this, "code", "null"))) {
             toastLong("请先设置班级");
         } else {
             showLoading();
