@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:padding="5dp"
     android:orientation="vertical"
@@ -9,7 +9,7 @@
     >
 
     <ImageView
-        android:src="@drawable/icon_yd_more"
+        android:src="@mipmap/btn_ydms_more"
         android:id="@+id/recycler_item_switchpattern_im"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

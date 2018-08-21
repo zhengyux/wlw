@@ -48,13 +48,13 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
                 holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
                 switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
                     case "3":
-                        holder.imageView.setImageResource(R.drawable.icon_bs_down);
+                        holder.imageView.setImageResource(R.mipmap.btn_bsms_down);
                         break;
                     case "1":
-                        holder.imageView.setImageResource(R.drawable.icon_yd_down);
+                        holder.imageView.setImageResource(R.mipmap.btn_ydms_down);
                         break;
                     case "2":
-                        holder.imageView.setImageResource(R.drawable.icon_ppt_down);
+                        holder.imageView.setImageResource(R.mipmap.btn_pptms_down);
                         break;
                 }
 
@@ -62,13 +62,13 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
                 holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
                 switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
                     case "3":
-                        holder.imageView.setImageResource(R.drawable.icon_bs_more);
+                        holder.imageView.setImageResource(R.mipmap.btn_bsms_more);
                         break;
                     case "1":
-                        holder.imageView.setImageResource(R.drawable.icon_yd_more);
+                        holder.imageView.setImageResource(R.mipmap.btn_ydms_more);
                         break;
                     case "2":
-                        holder.imageView.setImageResource(R.drawable.icon_ppt_more);
+                        holder.imageView.setImageResource(R.mipmap.btn_pptms_more);
                         break;
                 }
 

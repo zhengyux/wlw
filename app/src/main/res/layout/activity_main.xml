@@ -8,189 +8,201 @@
     tools:context=".activity.MainActivity">
 
     <RelativeLayout
-        android:background="@color/black"
-        android:id="@+id/re"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"></RelativeLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/re"
-        android:background="@color/black"
-        android:id="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_sk"
-            android:layout_width="110px"
-            android:layout_height="58px"
-            android:layout_marginLeft="20px"
-            android:background="@drawable/sk_sel" />
-
-        <Button
-            android:id="@+id/btn_xk"
-            android:layout_width="110px"
-            android:layout_height="58px"
-            android:layout_marginLeft="30px"
-            android:background="@drawable/xk_sel" />
-
-        <TextView
-            android:textColor="@color/griditem"
-            android:id="@+id/tv_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="30px" />
-
-
-        <CheckBox
-            android:button="@null"
-            android:id="@+id/btn_qg"
-            android:background="@drawable/kg_sel"
-            android:layout_marginRight="30px"
-            android:layout_width="110px"
-            android:layout_height="58px" />
-
-        <Button
-            android:layout_marginRight="30px"
-            android:id="@+id/btn_esc"
-            android:layout_width="110px"
-            android:layout_height="58px"
-            android:background="@mipmap/btn_tc" />
-
-        <ImageView
-            android:layout_marginRight="20px"
-            android:id="@+id/btn_set"
-            android:layout_width="55px"
-            android:layout_height="55px"
-            android:src="@mipmap/btn_sz_more" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/center"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/head"
-        android:layout_centerHorizontal="true" />
-
-    <RelativeLayout
-        android:layout_marginRight="20px"
-        android:layout_marginTop="10px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/head"
-        android:layout_toRightOf="@+id/center">
+        android:layout_above="@+id/logo"
+        >
 
-        <TextView
-            android:gravity="center"
-            android:background="@color/backg"
-            android:textSize="20px"
-            android:textColor="@color/griditem"
-            android:id="@+id/main_tv_room"
+        <RelativeLayout
+            android:background="@color/black"
+            android:id="@+id/re"
             android:layout_width="match_parent"
-            android:layout_height="68px" />
-
+            android:layout_height="15dp"></RelativeLayout>
 
         <LinearLayout
-            android:layout_marginTop="10px"
-            android:id="@+id/lin_mode"
+            android:layout_below="@+id/re"
+            android:background="@color/black"
+            android:id="@+id/head"
             android:layout_width="match_parent"
-            android:layout_height="96px"
-            android:layout_below="@+id/main_tv_room"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_rec_SwitchPattern"
-                android:visibility="visible"
+            <Button
+                android:id="@+id/btn_sk"
+                android:layout_width="55dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/sk_sel" />
+
+            <Button
+                android:id="@+id/btn_xk"
+                android:layout_width="55dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/xk_sel" />
+
+            <TextView
+                android:textColor="@color/griditem"
+                android:id="@+id/tv_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30px" />
+
+
+            <CheckBox
+                android:button="@null"
+                android:id="@+id/btn_qg"
+                android:background="@drawable/kg_sel"
+                android:layout_marginRight="15dp"
+                android:layout_width="55dp"
+                android:layout_height="29dp" />
+
+            <Button
+                android:layout_marginRight="15dp"
+                android:id="@+id/btn_esc"
+                android:layout_width="55dp"
+                android:layout_height="29dp"
+                android:background="@mipmap/btn_tc" />
+
+            <ImageView
+                android:layout_marginRight="20px"
+                android:id="@+id/btn_set"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@mipmap/btn_sz_more" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/center"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/head"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:layout_marginRight="20px"
+            android:layout_marginTop="10px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head"
+            android:layout_toRightOf="@+id/center">
+
+            <TextView
+                android:gravity="center"
                 android:background="@color/backg"
+                android:textSize="12sp"
+                android:textColor="@color/griditem"
+                android:id="@+id/main_tv_room"
                 android:layout_width="match_parent"
-                android:layout_height="86px">
+                android:layout_height="34dp" />
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/lin_mode"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/main_tv_room"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_rec_SwitchPattern"
+                    android:visibility="visible"
+                    android:background="@color/backg"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="5dp"
+                android:id="@+id/rec_f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_mode">
 
             </android.support.v7.widget.RecyclerView>
 
-        </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="10px"
-            android:id="@+id/rec_f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_mode">
-
-        </android.support.v7.widget.RecyclerView>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginLeft="20px"
-        android:layout_marginTop="10px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/head"
-        android:layout_toLeftOf="@+id/center">
-
-        <RelativeLayout
-            android:id="@+id/re_videoview"
-            android:background="@mipmap/sxt"
-            android:padding="18dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="500dp">
-
-            <VideoView
-                android:background="@mipmap/sxt"
-                android:id="@+id/videoview"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                />
         </RelativeLayout>
 
-
-
-        <LinearLayout
+        <RelativeLayout
+            android:layout_marginLeft="20px"
             android:layout_marginTop="10px"
-            android:gravity="center_vertical"
-            android:background="@color/backg"
             android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_below="@+id/re_videoview"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/head"
+            android:layout_toLeftOf="@+id/center">
+
+            <RelativeLayout
+                android:id="@+id/re_videoview"
+                android:background="@mipmap/sxt"
+                android:padding="18dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="500dp">
+
+                <VideoView
+                    android:background="@mipmap/sxt"
+                    android:id="@+id/videoview"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    />
+
+
+            </RelativeLayout>
 
 
 
-            <Button
-                android:visibility="gone"
-                android:id="@+id/adjust_set"
-                android:layout_marginLeft="20dp"
-                android:text="设置"
-                android:textColor="@color/black"
-                android:background="@mipmap/btn_bg1"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                />
+            <LinearLayout
+                android:layout_marginTop="10px"
+                android:gravity="center_vertical"
+                android:background="@color/backg"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_below="@+id/re_videoview"
+                android:orientation="horizontal">
 
-            <Switch
-                android:layout_margin="10dp"
-                android:thumb="@null"
-                android:textOn=""
-                android:textOff=""
-                android:track="@drawable/switch2_sel"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:switchMinWidth="80dp"
-                android:layout_height="wrap_content" />
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/adjust_set"
+                    android:layout_marginLeft="20dp"
+                    android:text="设置"
+                    android:textColor="@color/black"
+                    android:background="@mipmap/btn_bg1"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    />
 
-        </LinearLayout>
+                <Switch
+                    android:layout_margin="10dp"
+                    android:thumb="@null"
+                    android:textOn=""
+                    android:textOff=""
+                    android:track="@drawable/switch2_sel"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:switchMinWidth="80dp"
+                    android:layout_height="wrap_content" />
 
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
+
+
+
     <ImageView
+        android:id="@+id/logo"
         android:background="@color/black"
         android:layout_alignParentBottom="true"
         android:src="@mipmap/copy"
