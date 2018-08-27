@@ -55,8 +55,4 @@ public class AdjustActivity extends BaseActivity {
         });
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }

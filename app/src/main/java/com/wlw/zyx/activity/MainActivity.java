@@ -40,7 +40,7 @@ import site.gemus.openingstartanimation.OpeningStartAnimation;
 /**
  * 主页面
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     //设置班级按钮
     private ImageView btn_set;
@@ -87,9 +87,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
-        setOpeningStartAnimation(this);
-
         main_rec_SwitchPattern = bindView(R.id.main_rec_SwitchPattern);
         adjust_set = bindView(R.id.adjust_set);
         qg = bindView(R.id.btn_qg);

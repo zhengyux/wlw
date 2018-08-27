@@ -46,31 +46,37 @@ public class SwitchPatternAdapter extends RecyclerView.Adapter<SwitchPatternAdap
         if(!deviceBean.getResult().getSwitchPatternList().isEmpty()){
             if (deviceBean.getResult().getSwitchPatternList().get(position).getStatus().equals("01")) {
                 holder.textView.setTextColor(mContext.getResources().getColor(R.color.griditem));
-                switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
-                    case "3":
-                        holder.imageView.setImageResource(R.mipmap.btn_bsms_down);
-                        break;
-                    case "1":
-                        holder.imageView.setImageResource(R.mipmap.btn_ydms_down);
-                        break;
-                    case "2":
-                        holder.imageView.setImageResource(R.mipmap.btn_pptms_down);
-                        break;
+                if(null!=deviceBean.getResult().getSwitchPatternList().get(position).getFlag()){
+                    switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
+                        case "3":
+                            holder.imageView.setImageResource(R.mipmap.btn_bsms_down);
+                            break;
+                        case "1":
+                            holder.imageView.setImageResource(R.mipmap.btn_ydms_down);
+                            break;
+                        case "2":
+                            holder.imageView.setImageResource(R.mipmap.btn_pptms_down);
+                            break;
+                    }
                 }
+
 
             } else {
                 holder.textView.setTextColor(mContext.getResources().getColor(R.color.darkgray));
-                switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
-                    case "3":
-                        holder.imageView.setImageResource(R.mipmap.btn_bsms_more);
-                        break;
-                    case "1":
-                        holder.imageView.setImageResource(R.mipmap.btn_ydms_more);
-                        break;
-                    case "2":
-                        holder.imageView.setImageResource(R.mipmap.btn_pptms_more);
-                        break;
+                if(null!=deviceBean.getResult().getSwitchPatternList().get(position).getFlag()){
+                    switch (deviceBean.getResult().getSwitchPatternList().get(position).getFlag()) {
+                        case "3":
+                            holder.imageView.setImageResource(R.mipmap.btn_bsms_more);
+                            break;
+                        case "1":
+                            holder.imageView.setImageResource(R.mipmap.btn_ydms_more);
+                            break;
+                        case "2":
+                            holder.imageView.setImageResource(R.mipmap.btn_pptms_more);
+                            break;
+                    }
                 }
+
 
 
             }

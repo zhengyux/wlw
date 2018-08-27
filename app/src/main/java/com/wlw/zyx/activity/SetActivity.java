@@ -22,7 +22,7 @@ import okhttp3.Call;
 /**
  * 设置班级页面
  */
-public class SetActivity extends BaseActivity {
+public class SetActivity extends BaseActivity implements View.OnClickListener{
     //班级列表
     private GridView gridView;
     //班级对象

@@ -7,10 +7,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -22,7 +20,7 @@ import butterknife.ButterKnife;
 import site.gemus.openingstartanimation.LineDrawStrategy;
 import site.gemus.openingstartanimation.OpeningStartAnimation;
 
-public abstract  class BaseActivity extends AppCompatActivity implements View.OnClickListener{
+public abstract  class BaseActivity extends AppCompatActivity{
 
     /***封装toast对象**/
     private  Toast toast;
@@ -38,6 +36,10 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
         initData();
         initListener();
         setTranslucent(this);
+    }
+
+    protected void bindButterKnife(Activity activity){
+        ButterKnife.bind(activity);
     }
 
     // 设置布局
@@ -61,8 +63,8 @@ public abstract  class BaseActivity extends AppCompatActivity implements View.On
     protected   void setOpeningStartAnimation(Activity activity){
         OpeningStartAnimation openingStartAnimation = new OpeningStartAnimation.Builder(activity)
                 .setDrawStategy(new LineDrawStrategy())
-                .setAppName("巨匠物联网")
-                .setAppIcon(activity.getResources().getDrawable(R.mipmap.logo))
+                .setAppName("爱进步物联网")
+                .setAppIcon(activity.getResources().getDrawable(R.mipmap.icon_68))
                 .setAppStatement("爱进步，智慧校园")
                 .setAnimationFinishTime(4000)
                 .create();
