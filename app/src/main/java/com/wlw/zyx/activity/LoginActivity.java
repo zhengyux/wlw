@@ -60,6 +60,7 @@ public class LoginActivity extends BaseActivity {
                 openActivityAndCloseThis(MainActivity.class);
                 break;
             case R.id.iv_face_login:
+                openActivity(DetectLoginActivity.class);
                 break;
             case R.id.iv_code_login:
                 break;

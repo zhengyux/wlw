@@ -3,6 +3,14 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
+
+        debug {
+            keyAlias 'WLW'
+            keyPassword '123456'
+            storeFile file('../wlwkey.jks')
+            storePassword '123456'
+        }
+
         release {
             keyAlias 'WLW'
             keyPassword '123456'
