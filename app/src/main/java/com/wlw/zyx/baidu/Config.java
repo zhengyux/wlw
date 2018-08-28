@@ -12,7 +12,7 @@ public class Config {
 //    // license为调用sdk的人脸检测功能使用，人脸识别 = 人脸检测（sdk功能）  + 人脸比对（服务端api）
     public static String apiKey = "4tp0ojYWbeKqew6DeA6GluCb";
     public static String secretKey = "yHwMgOgYSf1xf1RLjt5YfVA5Yyyy0cGE";
-    public static String licenseID = "haixiajujiang-face-android";
+    public static String licenseID = "haixiawlw-face-android";
     public static String licenseFileName = "idl-license.face-android";
     /*
      * <p>

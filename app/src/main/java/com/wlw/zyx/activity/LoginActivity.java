@@ -1,5 +1,6 @@
 package com.wlw.zyx.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,18 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case RESULT_OK:
+
+                String userId = data.getStringExtra("userId");
+                toastLong("登录成功");
+
+                break;
+        }
+    }
 
     @OnClick({R.id.tv_forgetpwd_login, R.id.btn_login_login, R.id.iv_face_login, R.id.iv_code_login})
     public void onViewClicked(View view) {

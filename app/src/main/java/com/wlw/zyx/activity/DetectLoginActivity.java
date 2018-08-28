@@ -46,6 +46,7 @@ import com.wlw.zyx.baidu.widget.BrightnessTools;
 import com.wlw.zyx.baidu.widget.FaceRoundView;
 import com.wlw.zyx.baidu.widget.WaveHelper;
 import com.wlw.zyx.baidu.widget.WaveView;
+import com.wlw.zyx.util.dialogUtil.RxDialogFaceFail;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +57,10 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.UUID;
 
-public class DetectLoginActivity extends AppCompatActivity {
+
+
+
+public class DetectLoginActivity extends BaseActivity {
     private final static int MSG_INITVIEW = 1001;
     private final static int MSG_DETECTTIME = 1002;
     private final static int MSG_INITWAVE = 1003;
@@ -89,16 +93,13 @@ public class DetectLoginActivity extends AppCompatActivity {
     private int mBorderWidth = 0;
     private int mScreenW;
     private int mScreenH;
+    //loading动画
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detect_login);
-        faceDetectManager = new FaceDetectManager(this);
-        initScreen();
-        initView();
-        mHandler = new InnerHandler(this);
-        mHandler.sendEmptyMessageDelayed(MSG_INITVIEW, 500);
+    int setLayout() {
+        return R.layout.activity_detect_login;
     }
 
     private void initScreen() {
@@ -109,7 +110,12 @@ public class DetectLoginActivity extends AppCompatActivity {
         mScreenH = outMetrics.heightPixels;
     }
 
-    private void initView() {
+    protected void initView() {
+        faceDetectManager = new FaceDetectManager(this);
+        initScreen();
+
+        // 把帧动画的资源文件指定为iv的背景
+        // 获取iv的背景
 
         mInitView = findViewById(R.id.camera_layout);
         previewView = (PreviewView) findViewById(R.id.preview_view);
@@ -341,6 +347,20 @@ public class DetectLoginActivity extends AppCompatActivity {
 
         // mProgress = (ProgressBar) findViewById(R.id.progress_bar);
         init();
+
+        mHandler = new InnerHandler(this);
+        mHandler.sendEmptyMessageDelayed(MSG_INITVIEW, 500);
+        mHandler.sendEmptyMessageDelayed(MSG_INITWAVE, 3000);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
     }
 
     private void initWaveview(Rect rect) {
@@ -452,8 +472,8 @@ public class DetectLoginActivity extends AppCompatActivity {
      * 无需知道uid，如果同一个人多次注册，可能返回任意一个帐号的uid
      * 建议上传人脸到自己的服务器，在服务器端调用https://aip.baidubce.com/rest/2.0/face/v3/search，比对分数阀值（如：80分），
      * 认为登录通过
-     * group_id	是	string	用户组id（由数字、字母、下划线组成），长度限制128B，如果需要查询多个用户组id，用逗号分隔
-     * image	是	string	图像base64编码，每次仅支持单张图片，图片编码后大小不超过10M
+     * group_id    是  string 用户组id（由数字、字母、下划线组成），长度限制128B，如果需要查询多个用户组id，用逗号分隔
+     * image   是  string 图像base64编码，每次仅支持单张图片，图片编码后大小不超过10M
      * <p>
      * 返回登录认证的参数给客户端
      *
@@ -533,10 +553,10 @@ public class DetectLoginActivity extends AppCompatActivity {
                             return;
                         } else {
                             Log.d("DetectLoginActivity", "onResult fail");
+
                             if (mDetectCount >= 3) {
                                 mDetectTime = false;
-                                Toast.makeText(DetectLoginActivity.this, "人脸校验不通过,请确认是否已注册", Toast.LENGTH_SHORT).show();
-                                finish();
+                                showFailDialog();
                                 return;
                             }
 
@@ -637,6 +657,37 @@ public class DetectLoginActivity extends AppCompatActivity {
         });
     }
 
+    private void stopLoading(){
+
+    }
+
+    private void showFailDialog(){
+        final RxDialogFaceFail rxDialogFaceFail = new RxDialogFaceFail(this);//提示弹窗
+        rxDialogFaceFail.getTitleView().setBackgroundResource(R.mipmap.icon_sb);
+        rxDialogFaceFail.getzhdlView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialogFaceFail.cancel();
+                finish();
+            }
+        });
+        rxDialogFaceFail.getrlsbView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivityAndCloseThis(DetectLoginActivity.class);
+                rxDialogFaceFail.cancel();
+            }
+        });
+        rxDialogFaceFail.getewmdlView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialogFaceFail.cancel();
+                finish();
+            }
+        });
+        rxDialogFaceFail.show();
+    }
+
     private static class InnerHandler extends Handler {
         private WeakReference<DetectLoginActivity> mWeakReference;
 
@@ -664,6 +715,9 @@ public class DetectLoginActivity extends AppCompatActivity {
                     break;
                 case MSG_DETECTTIME:
                     activity.mDetectTime = true;
+                    break;
+                case MSG_INITWAVE:
+                    activity.stopLoading();
                     break;
                 default:
                     break;
